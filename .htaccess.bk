@@ -1,0 +1,32 @@
+<IfModule mod_rewrite.c>
+    # Turn on URL rewriting
+    RewriteEngine On
+    
+    # Allow any files or directories that exist to be displayed directly
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirect any other url to index.php
+    #RewriteCond %{HTTP_HOST} !www.lunghealthgc.org.uk$ [NC]
+    #RewriteCond %{HTTP_HOST} ^test.lunghealthgc.org.uk$ [NC]
+    #RewriteRule ^(.*)$ index_test.php/$1 [L]
+    
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{HTTP_HOST} !www.lunghealthgc.org.uk$ [NC]
+    #RewriteCond %{HTTP_HOST} ^dev.lunghealthgc.org.uk$ [NC]
+    #RewriteRule ^(.*)$ index_dev.php/$1 [L]
+    #RewriteCond %{HTTP_HOST} !^dev.lunghealthgc.org.uk$ [NC]
+
+    
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{HTTP_HOST} !www.lunghealthgc.org.uk$ [NC]
+    #RewriteCond %{HTTP_HOST} ^side.lunghealthgc.org.uk$ [NC]
+    #RewriteRule ^(.*)$ index_sidebar.php/$1 [L]
+
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index_dev.php/$1 [L]
+</IfModule>
