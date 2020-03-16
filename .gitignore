@@ -1,0 +1,6 @@
+# PHP Storm Workspace
+.idea/
+
+
+# For local development
+application/development/config/

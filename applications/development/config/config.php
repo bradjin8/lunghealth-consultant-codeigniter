@@ -13,7 +13,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://ec2-34-253-212-47.eu-west-1.compute.amazonaws.com/';
+//$config['base_url']	= 'http://ec2-34-253-212-47.eu-west-1.compute.amazonaws.com/';
+$config['base_url']	= 'http://localhost/';
 
 /*
 | $config['base_url']	= 'http://www.jonti.org.uk/';
