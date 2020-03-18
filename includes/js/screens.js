@@ -1,7 +1,7 @@
 
                                         
                                        
-                            var showConsole = false;
+                            var showConsole = true;
                             var fieldValues = [];
                             
                             var arrRevealed = [];
