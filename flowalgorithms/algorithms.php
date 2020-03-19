@@ -404,7 +404,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
     }
 
-    //Flow 1009 AND 1010 AND 2009 AND 2010 - Therapy (Step 1-3) 1A / Therapy (Step 4-5) 1A / Therapy (Step 1-3) FU/AR / Therapy (Step 4-5) FU/AR
+    //Flow 1009 AND 1010 AND 2009 AND 2010 - Therapy (Step 1-3) 1A / Therapy (Step D) 1A / Therapy (Step 1-3) FU/AR / Therapy (Step D) FU/AR
 
     //fn_TherapyOrDeviceChanged("Therapy,CheckOnNoTherapy",1112,1110) - FieldID: 2121
     //fn_TherapyOrDeviceChanged("Therapy,CheckOnNoTherapy",1112,1110) - FieldID: 2122
@@ -535,7 +535,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             //Current Step 1-3 (or no medication and previously Step 1-3)
         } elseif ($FlowMedicationLevel >= 1 && $FlowMedicationLevel <= 3) {
             return $AssessControlFTFlow;
-            //Current Step 4-5
+            //Current Step D
         } elseif ($FlowMedicationLevel >= 4 && $FlowMedicationLevel <= 5) {
             return $AssessControlFlow;
         } else {
@@ -568,7 +568,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             $FlowMedicationLevel = $CurrentMedicationLevel;
         }
 
-        //Previously Step 4-5
+        //Previously Step D
         if ($FlowMedicationLevel >= 4 && $FlowMedicationLevel <= 5) {
             return $ExitFlow;
             //No medication for two visits
@@ -668,7 +668,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             //Step 1-3 (or no medication and Step 1-3 last time); good control; follow-up
         } else if ($FlowMedicationLevel >= 1 && $FlowMedicationLevel <= 3 && $ControlScore == "Good" && $AssessmentType == "FU") {
             return $SummarySoFarFlow;
-            //Step 4-5 OR good or partial control OR annual review
+            //Step D OR good or partial control OR annual review
         } elseif (($FlowMedicationLevel >= 4 && $FlowMedicationLevel <= 5)
             || ($ControlScore == "Partial" || $ControlScore == "Poor")
             || $AssessmentType == "AR") {
@@ -1443,7 +1443,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 //						//echo "<h1>42</h1>";
 //						return $MedicationLevel = "4";
 //					} else {
-//						//If Combo with SMART dosing then Step 3
+//						//If Combo with SMART dosing then Step C
 //						if($CurrentComb != NULL && $BdpCombo == "SMART"){
 //							return $MedicationLevel = "3";
 //						} else {
@@ -1480,7 +1480,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 //
 //
 //				} else {
-//					//If LTRA, Cromone, or Theophylline then Step 2
+//					//If LTRA, Cromone, or Theophylline then Step B
 //					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
 //						return $MedicationLevel = "2";
 //					//If ISAMA, ISAA, or OBA then Step 1
@@ -1633,18 +1633,19 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         $ExacerbationManageAtHome = $arrInputs[37];   #	Exacerbation	ManageAtHome	Continue,"Refer"
         $AssessmentType = $arrInputs[38]; #AssessmentDetails	AssessmentType	"FU","AR","EX","1A"
 
-        ### Fields to add 03/12/2015
+        ### Fields to add 03/12/2015, Updated 03/19/2020
 
-        $DiagnosticConfirmation45 = $arrInputs[39]; # FirstAssessment	DiagnosticConfirmation45
+        $DiagnosticConfirmationE12 = $arrInputs[39]; # FirstAssessment	DiagnosticConfirmation45
 
-        $PossibleAction = $arrInputs[40];    #FollowUp	PossibleAction	Varchar(50)		"Step 4 Option","More Tests","Referral"
-        $ProbableAction = $arrInputs[41];    #FollowUp	ProbableAction	Varchar(50)		"Step 4 Option","More Tests","Referral"
-        $DefiniteAction = $arrInputs[42];    #FollowUp	DefiniteAction	Varchar(50)		"Step 4 Option","Referral"
+        $PossibleAction = $arrInputs[40];    #FollowUp	PossibleAction	Varchar(50)		"Step E Option","More Tests","Referral"
+        $ProbableAction = $arrInputs[41];    #FollowUp	ProbableAction	Varchar(50)		"Step E Option","More Tests","Referral"
+        $DefiniteAction = $arrInputs[42];    #FollowUp	DefiniteAction	Varchar(50)		"Step E Option","Referral"
 
         $CurrentMedicationLevelLastVisit = $arrInputs[43];
 
 
-        ### Fields to added 03/19/2020
+        ### Fields to add 03/19/2020
+        # TODO: need to be added...
         $TherapyOptionsN2N2 = $arrInputs[43]; # "Maintain", "MART", "StepUp"
         $TherapyOptionsOO = $arrInputs[44]; # "Maintain", "Increase", "StepUp"
         $TherapyOptionsQQ = $arrInputs[45]; # "Increase", "Specialist"
@@ -1727,10 +1728,15 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 } elseif ($UsedControl == "Partial") {
                     // TODO: CHECK THIS TREE...
                     if ($ControlLastTime == "Partial" || $ControlLastTime == "Poor") {
-                        if ($InhaledCorticosteroids == null || $Saba == null) {
-                            return $TherapyStream = "I1";
+                        if ($InhaledCorticosteroids != null) {
+                            if (intval($InhaledCorticosteroids) > 200) {
+                                return $TherapyStream = "H1a";
+                            } else {
+                                return $TherapyStream = "H1b";
+                            }
+                            //return $TherapyStream = "I1";
                         } else {
-                            return $TherapyStream = "H1";
+                            return $TherapyStream = "I1";
                         }
                     } else {
                         if ($InhaledCorticosteroids != null || $Saba != null) {
@@ -2003,7 +2009,181 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                     return $TherapyStream = "ERROR - UsedControl";
                 }
             } elseif ($CurrentMedicationLevel == "E1" || $CurrentMedicationLevel == "E2") {
-                ### TODO: Step E1/E2
+                ### 03/19/2020: Step E1/E2
+                # Guidelines 2019 suggest that all persons at this level of "Specialised Therapies" should be or have been,
+                # assessed and reviewed in a specialist clinic.
+                # Is this person either under such specialist review or have they been assessed in the last 2 years.
+                # If YES - please continue to manage their cond
+                ## TODO: these fields need to be added....
+                $UnderSpecialistReview = "Y";
+                $AssessedInLast2Years = "Y";
+
+                $UnderAsthmaSpecialistService = "Y";
+                $RereferMoreSpecialistAdvice = "Y";
+                $ReferSpecialistAdvice = "Y";
+
+                $ControlOptionsD5 = $ControlOptions;
+
+                $NoRegularOralSteroids = "N";
+                $SelectedReferD9 = "Y"; // "N"
+                $SelectedReferD11 = "Y"; // "N"
+
+                if ($UnderSpecialistReview == "Y" || $AssessedInLast2Years == "Y") {
+                    if ($UsedControl == "Good" || $UsedControl == "Partial") {
+                        ### Was control Good/Partial at previous visit too?
+                        if ($ControlLastTime == "Good" || $ControlLastTime == "Partial") {
+                            ### This patient may be suitable for step down. Do you want to step down therapy now?
+                            if ($StepDownTherapyNow == "Y") {
+                                ### Has step down failed before?
+                                if ($StepDownFailedBefore == "Y") {
+                                    return $TherapyStream = "D2";
+                                } else {
+                                    return $TherapyStream = "D1";
+                                }
+                            } else {
+                                return $TherapyStream = "D3";
+                            }
+
+                        } else {
+                            return $TherapyStream = "D4";
+                        }
+                    } elseif ($UsedControl == "Poor") {
+                        ### Is there an acute reason for deterioration, or poor adherence, or poor technique
+                        if ($OtherReason == TRUE) {
+                            # You have identified a possible reason for poor control and it may be enough to correct this
+                            # and continue to monitor progress. However at this level of therapy poor control is often
+                            # associated with bad outcome
+
+                            ### Under the current care of an asthma specialist service?
+                            if ($UnderAsthmaSpecialistService == "Y") {
+                                ### Would you like to re-refer for more specialist advice who are you refering to?
+                                if ($RereferMoreSpecialistAdvice == "Y") {
+                                    return $TherapyStream = "D6";
+                                } else {
+                                    return $TherapyStream = "D6a";
+                                }
+                            } else {
+                                # This person is not under current specialist clinic follow-up, would you like to refer for specialist advice
+                                # who are you referring to?
+                                if ($ReferSpecialistAdvice == "Y") {
+                                    return $TherapyStream = "D6b";
+                                } else {
+                                    return $TherapyStream = "D6c";
+                                }
+                            }
+                        } else {
+                            ### First Visit/ FU or Annual Review?
+                            if ($AssessmentType == "1A" || $AssessmentType == "FU") {
+                                ### Under the currect care of specialist service
+                                if ($UnderAsthmaSpecialistService == "Y") {
+                                    # D5 Question
+                                    ### Control options as per the message in D5
+                                    switch ($ControlOptionsD5) {
+                                        case "AwaitAdvice":
+                                            return $TherapyStream = "D5A";
+                                            break;
+                                        case "IncreaseTherapy":
+                                            return $TherapyStream = "D5B";
+                                            break;
+                                        case "OralSteroid":
+                                            return $TherapyStream = "D5C";
+                                            break;
+                                        default:
+                                            return $TherapyStream = "ControlOptionsD5 - Error";
+                                    }
+                                } else {
+                                    ### Is the person no regular oral steroid
+                                    if ($NoRegularOralSteroids == "N") {
+                                        # D9 Question Text
+                                        if ($SelectedReferD9 == "Y") {
+                                            return $TherapyStream = "D8";
+                                        } else {
+                                            return $TherapyStream = "D8a";
+                                        }
+                                    } else {
+                                        # D11 Question Text
+                                        if ($SelectedReferD11 == "Y") {
+                                            return $TherapyStream = "Da";
+                                        } else {
+                                            return $TherapyStream = "Db";
+                                        }
+                                    }
+                                }
+                            } elseif ($AssessmentType == "AR") {
+                                # This person has not responded as well as expected over the past year to "Specialised Therapies" ...
+                                ### Refer for formal assessment?
+                                if ($ReferFormalAssessment == "N") {
+                                    ### If diagnosis is possible, probably or definite
+                                    if ($DefiniteAction == "Referral") {
+                                        # This person has good evidence to support the diagnosis of asthma and it appropriate to ...
+                                        ### Do you wish to reconsider referral or continue with added therapy?
+                                        if ($LungFunctionSpirometryReferOrContinue == "refer") {
+                                            return $TherapyStream = "ARa";
+                                        } else {
+                                            return $TherapyStream = "ARb";
+                                        }
+                                    } # probable / possible
+                                    else {
+                                        # The evidence to support the asthma diagnosis is week to moderate in this person and ...
+                                        ### Do you wish to reconsider referral or continue with added therapy
+                                        if ($LungFunctionSpirometryReferOrContinue == "refer") {
+                                            return $TherapyStream = "ARc";
+                                        } else {
+                                            return $TherapyStream = "ARd";
+                                        }
+                                    }
+                                } else {
+                                    return $TherapyStream = "ARe";
+                                }
+                            } else {
+                                return $TherapyStream = "No case for this, Step E, Ex";
+                            }
+                        }
+                    } else {
+                        return $TherapyStream = "Step E, UsedControl - Error";
+                    }
+                } else {
+                    if ($UsedControl == "Good" || $UsedControl == "Partial") {
+                        ### Has this level of control been Good for 3 months?
+                        if ($PresentControl3Months == "Y") {
+                            ### This pt may be suitable step down. Do you want to step down therapy now?
+                            if ($StepDownTherapyNow == "Y") {
+                                ### Has step down failed before?
+                                if ($StepDownFailedBefore == "N") {
+                                    return $TherapyStream = "F1";
+                                } else {
+                                    return $TherapyStream = "F2";
+                                }
+                            } else {
+                                return $TherapyStream = "F3";
+                            }
+                        } else {
+                            return $TherapyStream = "F4";
+                        }
+                    } elseif ($UsedControl == "Poor") {
+                        ### Is there an acute reason for deterioration, poor adherence, or poor technique?
+                        if ($OtherReason === TRUE) {
+                            # You have identified a possible reason for poor control - please correct this and continue to ...
+                            ### Refer or manage locally?
+                            if ($LungFunctionSpirometryReferOrContinue == "refer") {
+                                return $TherapyStream = "G1";
+                            } else {
+                                return $TherapyStream = "G2";
+                            }
+
+                        } else {
+                            # This person has not responded as well as expected over the past year to "Specialised Therapies" and ...
+                            ### Refer or manage locally?
+                            if ($LungFunctionSpirometryReferOrContinue == "refer") {
+                                return $TherapyStream = "G3";
+                            } else {
+                                return $TherapyStream = "G4";
+                            }
+                        }
+                    } else {
+                        return $TherapyStream = "Step E, UsedControl - No case";
+                    }
+                }
 
             } else {
                 return $TherapyStream = "ERROR - CurrentMedicationLevel2";
@@ -2177,33 +2357,33 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             $CurrentStep = $CurrentMedicationLevel;
         }
 
-        if ($CurrentStep == "1" || $CurrentStep == "2" || $CurrentStep == "3") {
-            $CurrentStep1Drug = $Saba ?: $Sama ?: $SabaTabs ?: $Theo;
-            $CurrentStep1Drug = $CI->d_model->getLabelFor($CurrentStep1Drug);
-            if (!$CurrentStep1Drug || empty($CurrentStep1Drug)) {
-                $CurrentStep1Drug = "no current therapy";
+        if ($CurrentStep == "A" || $CurrentStep == "B" || $CurrentStep == "C") {
+            $CurrentStepADrug = $Saba ?: $Sama ?: $SabaTabs ?: $Theo;
+            $CurrentStepADrug = $CI->d_model->getLabelFor($CurrentStepADrug);
+            if (!$CurrentStepADrug || empty($CurrentStepADrug)) {
+                $CurrentStepADrug = "no current therapy";
             }
         }
 
-        if ($CurrentStep == "2") {
-            $CurrentStep2Drug = $Ics;
-            $CurrentStep2Drug = $CI->d_model->getLabelFor($CurrentStep2Drug);
-            if (!$CurrentStep2Drug || empty($CurrentStep2Drug)) {
-                $CurrentStep2Drug = "no current therapy";
+        if ($CurrentStep == "B") {
+            $CurrentStepBDrug = $Ics;
+            $CurrentStepBDrug = $CI->d_model->getLabelFor($CurrentStepBDrug);
+            if (!$CurrentStepBDrug || empty($CurrentStepBDrug)) {
+                $CurrentStepBDrug = "no current therapy";
             }
 
-            $CurrentStep2NonIcsDrug = $Ltra ?: $Cromone ?: $Theo;
-            $CurrentStep2NonIcsDrug = $CI->d_model->getLabelFor($CurrentStep2NonIcsDrug);
-            if (!$CurrentStep2NonIcsDrug || empty($CurrentStep2NonIcsDrug)) {
-                $CurrentStep2NonIcsDrug = "no current therapy";
+            $CurrentStepBNonicsDrug = $Ltra ?: $Cromone ?: $Theo;
+            $CurrentStepBNonicsDrug = $CI->d_model->getLabelFor($CurrentStepBNonicsDrug);
+            if (!$CurrentStepBNonicsDrug || empty($CurrentStepBNonicsDrug)) {
+                $CurrentStepBNonicsDrug = "no current therapy";
             }
         }
 
-        if ($CurrentStep == "3") {
-            $CurrentStep3NonIcsDrug = $Ltra ?: $Cromone ?: $Theo;
-            $CurrentStep3NonIcsDrug = $CI->d_model->getLabelFor($CurrentStep3NonIcsDrug);
-            if (!$CurrentStep3NonIcsDrug || empty($CurrentStep3NonIcsDrug)) {
-                $CurrentStep3NonIcsDrug = "no current therapy";
+        if ($CurrentStep == "C") {
+            $CurrentStepCNonicsDrug = $Ltra ?: $Cromone ?: $Theo;
+            $CurrentStepCNonicsDrug = $CI->d_model->getLabelFor($CurrentStepCNonicsDrug);
+            if (!$CurrentStepCNonicsDrug || empty($CurrentStepCNonicsDrug)) {
+                $CurrentStepCNonicsDrug = "no current therapy";
             }
         }
 
@@ -2218,99 +2398,106 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         $msgText = "[DEV] Please note review ID - Therapy recommendation failed";
 
 
-        // EDIT: 2020/03/17
+        // EDIT: 03/17/2020
 
 
         //LABA Alone
         if ($msgCode == "NS") {
-            $msgText = "<p>This patient was on a non-standard regime and the algorithm cannot be adjusted for this. Please take extra care as you select your therapeutic plan for this person.</p>";
+            $msgText = "<p>This person was on a non-standard regime and the algorithm cannot be adjusted for this. Please take extra care as you select your therapeutic plan for this person.</p>";
         }
 
         //No medication on First Assesment
         if ($msgCode == "STA") {
-            $msgText = "<p>This patient is new to the system and has been on no previous asthma therapy.</p><p>Starting therapy depends on severity of symptoms, level of current control and is at the discretion of the treating doctor. Usually the choice will rest between Step 2 and Step 3 of the guidelines i.e. a preventer ICS inhaler at a dose between 200 and 800 mcg per day via a dry powder device with additional long acting beta agonists if current control is poor. The patient should be followed up after 4 weeks to assess response. Response should be assessed both from the change in reported symptoms <b>and</b> by the change in PEF and/or spirometric measurement.</p>";
+            $msgText = "<p>This person is new to the system and has been on no previous asthma therapy.</p><p>Starting therapy depends on severity of symptoms, level of current control and is at the discretion of the treating doctor. The choice is between a short acting beta agonist together with a preventer ICS inhalar Both as required OR regular preventer ICS at a dose between 200 and 400 mcg per day via a dry powder device with additional short acting beta agonists as relief. The person should be follow up after 4 weeks to assess response. Response should be assessed both from the change in reported symptoms <b>AND</b> by the change in PEF and/or spirometric measurement.</p>";
         }
 
         //Step A; good control present for 6 months
         if ($msgCode == "A") {
-            $msgText = "<p>This patient is on \"As required Reliever therapy\" using " . $CurrentStep1Drug . ". They report good control that has been present for 6 months or more. It is acceptable for them to use the drug less but appropriate for them to retain some therapy since even well controlled asthma may vary over time. Plan to continue annual asthma reviews until and unless they have been shown not to need any therapy over several years.</p>";
+            $msgText = "<p>This person is on \"As required Reliever therapy\" using " . $CurrentStepADrug . ". They report good control that has been present for 6 months or more. It is acceptable for them to use the drug less but appropriate for them to retain some therapy since even well controlled asthma may vary over time. Guidelines suggest they should have both short acting reliever and a low dose ICS in reserve. Plan to continue annual asthma reviews until and unless they have been shown not to need any therapy over several years.</p>";
         }
 
         //Step A; good control but NOT present for 6 months
         if ($msgCode == "B") {
-            $msgText = "<p>This patient is on \"As required Reliever therapy\" using " . $CurrentStep1Drug . ". They report good control and the plan is for them to continue with current therapy unchanged. Keep under annual review.</p>";
+            $msgText = "<p>This person is on \"As required Reliever therapy\" using " . $CurrentStepADrug . ". They report good control and the plan is for them to continue with current therapy unchanged. Keep under annual review.</p>";
         }
 
         //Step A; poor or partial control
         if ($msgCode == "C") {
-            if ($Saba != null) {
-                $msgText = "<p>This patient is reporting symptoms that should be controllable. Consider moving up to Step 2 by adding a low dose inhaled steroid.</p>";
-            } else {
-                $msgText = "<p>This patient is reporting symptoms that should be controllable. Consider moving up to Step 2 by adding a low dose inhaled steroid and switching the reliever drug " . $CurrentStep1Drug . " to a short acting beta-agonist bronchodilator. Plan to review the effect of this change sooner than otherwise when you plan next appointment later in the program.</p>";
-            }
+            $msgText = "<p>This person is reporting symptoms that should be controllable. Consider moving up to \"Regular Preventer Therapy\" with a low dose ICS plus as required SABA. Plan to review the effect of this change sooner than otherwise when you plan next appointment later in the program.</p>";
         }
 
-        //Step 2; good control present for 6 months; SABA+ICS
+        ####TODO: change the following messages
+        //Step B; good control present for 6 months; SABA+ICS
         if ($msgCode == "D") {
-            $msgText = "<p>This patient is reporting good control on a low dose of inhaled steroid (Step 2). Control was also good 6 months ago, and if it has been stable over the whole period then consider if an even lower dose or step down may be appropriate. Plan to review in one year but make it clear that if stepping down causes symptoms to return the patient may resume their previous dosage.</p>";
+            $msgText = "<p>This person is reporting good control on a low dose of inhaled steroid. Control was also good 3 months ago, and if it has been stable over the whole period then consider if an even lower regular dose or step down to intermittent use of both ICS and SABA, may be appropriate. Plan to review in one year - but make it clear that if stepping down causes symptoms to return the person may resume their previous dosage.</p>";
         }
 
-        //Step 2; good control but NOT present for 6 months; SABA+ICS
+        //Step B; good control but NOT present for 6 months; SABA+ICS
         if ($msgCode == "E") {
-            $msgText = "<p>This patient is reporting good control on a low dose of inhaled steroid (Step 2). Continue same therapy. Plan to review in one year.</p>";
+            $msgText = "<p>This person is reporting good control on a low dose of regular inhaled steroid. Continue same therapy. Plan to review in one year.</p>";
         }
 
-        //Step 2; good control present for 6 months; NOT SABA+ICS
+        //Step B; good control present for 6 months; NOT SABA+ICS
         if ($msgCode == "F") {
-            $msgText = "<p>This patient is reporting good control on " . $CurrentStep2NonIcsDrug . " (Step 2). As control was also good 6 months ago, consider step down. i.e. whether " . $CurrentStep2NonIcsDrug . " is still required. Plan to review in one year but make it clear that if the reduction causes symptoms to return the patient may resume their previous dosage.</p>";
+            $msgText = "<p>This person is reporting good control on " . $CurrentStepBNonicsDrug . " (Step B). As control was also good 6 months ago, consider step down. i.e. whether " . $CurrentStepBNonicsDrug . " is still required. Plan to review in one year - but make it clear that if the reduction causes symptoms to return the person may resume their previous dosage.</p>";
         }
 
-        //Step 2; good control but NOT present for 6 months; NOT SABA+ICS
+        //Step B; good control Continue "other" drug same SABA/ low ICS
         if ($msgCode == "G") {
-            $msgText = "<p>This patient is reporting good control on " . $CurrentStep2NonIcsDrug . " (Step 2). Continue same regimen and plan to review in one year.</p>";
+            $msgText = "<p>This person is reporting good control on " . $CurrentStepBNonicsDrug . " (Step B). Continue same regimen and plan to review in one year.</p>";
         }
 
-        //Step 2; partial control and poor or partial last time; SABA+ICS
+        //Step B, partial control, In haled steroid 400mcg/day of BDP or equivalent to regain control or switching to a steroid/LABA combination inhaler
+        if ($msgCode == "H1b") {
+            $msgText = "<p>This person is reporting partial control, on a very low dose of Regular inhaled steroid. As control was less than good last time, Consider Doubling the dose of inhaler steroid OR switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
+        }
+
+        //Step B,
+        if ($msgCode == "H1a") {
+            $msgText = "<p>This person is reporting partial control on a low dose of Regular inhaled steroid. As control was less than good last time, Consider changing to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
+        }
+
+        //Step B; partial control and poor or partial last time; SABA+ICS
         if ($msgCode == "H1") {
-            $msgText = "<p>This patient reports partial control on a low dose of inhaled steroid (Step 2). As control was less than good last time, consider increasing the dose of inhaler steroid or changing to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
+            $msgText = "<p>This person reports partial control on a low dose of inhaled steroid (Step B). As control was less than good last time, consider increasing the dose of inhaler steroid or changing to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
         }
 
-        //Step 2; partial control and poor or partial last time; NOT SABA+ICS
+        //Step B; partial control and poor or partial last time; NOT SABA+ICS
         if ($msgCode == "I1") {
-            $msgText = "<p>This patient reports partial control on " . $CurrentStep2NonIcsDrug . " (Step 2). As control was less than good last time, consider changing the " . $CurrentStep2NonIcsDrug . " to an inhaled steroid or adding an inhaled steroid to the current regime and plan to review earlier than one year to assess whether this has achieved control.</p>";
+            $msgText = "<p>This person reports partial control on " . $CurrentStepBNonicsDrug . " prophlaxis. (Step B). As control was less than good last time, consider changing the " . $CurrentStepBNonicsDrug . " to an inhaled steroid or adding an inhaled steroid to the current regime and plan to review earlier than one year to assess whether this has achieved control.</p>";
         }
 
-        //Step 2; partial control and good or unknown last time; SABA+ICS
+        //Step B; partial control and good or unknown last time; SABA+ICS
         if ($msgCode == "H2") {
-            $msgText = "<p>This patient reports partial control on a low dose of inhaled steroid (Step 2). As this is the first time reporting less than good control, consider keeping treatment the same now but to review earlier than one year to assess whether a step up of therapy may be needed.</p>";
+            $msgText = "<p>This person reports partial control on a low dose of inhaled steroid. As this is the first time reporting less than good control, consider keeping treatment the same now but to review earlier than one year to assess whether a step up of therapy may be needed.</p>";
         }
 
-        //Step 2; partial control and good or unknown last time; NOT SABA+ICS
+        //Step B; partial control and good or unknown last time; NOT SABA+ICS
         if ($msgCode == "I2") {
-            $msgText = "<p>This patient reports partial control on " . $CurrentStep2NonIcsDrug . " (Step 2). Consider switching to the more conventional Step 2 option i.e. a low dose of inhaled steroid (Step 2) <b>with or without a LABA.</b> In view of symptoms, plan to review earlier than one year to assess whether control has been regained.</p>";
+            $msgText = "<p>This person reports partial control on " . $CurrentStepBNonicsDrug . " prophlaxis. (Step B). Consider switching to the more conventional Step B option i.e. a low dose of inhaled steroid (Step B) <b>with or without a LABA.</b> In view of symptoms, plan to review earlier than one year to assess whether control has been regained.</p>";
         }
 
-        //Step 2; poor control and poor last time; SABA+ICS
+        //Step B; poor control and poor last time; SABA+ICS
         if ($msgCode == "J") {
             if ($AcuteReason == "Y") {
-                $msgText = "<p><b>This patient has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs.</b></p>";
+                $msgText = "<p><b>This person has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs.</b></p>";
             } else {
                 $msgText = "";
             }
             $msgText = $msgText . "<p>Because this is not the first time limited control has been noted, consider increasing the dose of inhaler steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether control has been regained.</p>";
         }
 
-        //Step 2; poor control and poor last time; NOT SABA+ICS
+        //Step B; poor control and poor last time; NOT SABA+ICS
         if ($msgCode == "J1") {
             if ($AcuteReason == "Y") {
-                $msgText = "<p><b>This patient has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs.</b></p>";
+                $msgText = "<p><b>This person has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs.</b></p>";
             } else {
                 $msgText = "";
             }
-            $msgText = $msgText . "<p>Because this is not the first time limited control has been noted, consider changing the " . $CurrentStep2NonIcsDrug . " to an ICS <b>with or without a LABA</b> and plan to review earlier than one year to assess whether a step up of therapy may be needed.</p>";
+            $msgText = $msgText . "<p>Because this is not the first time limited control has been noted, consider changing the " . $CurrentStepBNonicsDrug . " to an ICS <b>with or without a LABA</b> and plan to review earlier than one year to assess whether a step up of therapy may be needed.</p>";
         }
 
-        //Step 2; poor control and good or partial last time; SABA+ICS
+        //Step B; poor control and good or partial last time; SABA+ICS
         if ($msgCode == "K") {
 
             if ($ControlLastTime == "unknown") {
@@ -2319,36 +2506,36 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 $secSentance = "As control was " . strtolower($ControlLastTime) . " last time";
             }
 
-            $msgText = "<p>This patient reports poor control on a low dose of inhaled steroid " . $CurrentStep2Drug . " (Step 2). " . $secSentance . ", consider increasing the dose of inhaler steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this step up of therapy should be maintained permanently.</p>";
+            $msgText = "<p>This person reports poor control on a low dose of inhaled steroid " . $CurrentStepBDrug . " (Step B). " . $secSentance . ", consider increasing the dose of inhaler steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this step up of therapy should be maintained permanently.</p>";
         }
 
-        //Step 2; poor control and good or partial last time; NOT SABA+ICS
+        //Step B; poor control and good or partial last time; NOT SABA+ICS
         if ($msgCode == "K1") {
-            $msgText = "<p>This patient reports poor control on " . $CurrentStep2NonIcsDrug . " prophylaxis (Step 2). Consider adding a low dose of inhaled steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether control has been regained.</p>";
+            $msgText = "<p>This person reports poor control on " . $CurrentStepBNonicsDrug . " prophylaxis (Step B). Consider adding a low dose of inhaled steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether control has been regained.</p>";
         }
 
-        //Step 2; poor control and good or partial last time; acute reason
+        //Step B; poor control and good or partial last time; acute reason
         if ($msgCode == "K2") {
-            $msgText = "<p>This patient has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs. Because this is the first time limited control has been noted, it is reasonable to maintain existing therapy unchanged but to review earlier to make sure that the acute problems have subsided.</p>";
+            $msgText = "<p>This person has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs. Because this is the first time limited control has been noted, it is reasonable to maintain existing therapy unchanged but to review earlier to make sure that the acute problems have subsided.</p>";
         }
 
-        //Step 3; good control present for 6 months
+        //Step C; good control present for 6 months
         if ($msgCode == "M") {
-            $msgText = "<p>This patient reports good control on Step 3 treatment. Control was also good 6 months ago, and if it has been stable over the whole period, then consider if step down may be appropriate. Plan to review in one year but make it clear that if stepping down causes symptoms to return the patient may resume their previous dosage.</p>";
+            $msgText = "<p>This person reports good control on \"Initial Add-on Therapy\". Control was also good 3 months ago, and if it has been stable over the whole period, then consider if step down may be appropriate. Plan to review in one year but make it clear that if stepping down causes symptoms to return the patient may resume their previous dosage.</p>";
         }
 
-        //Step 3; good control not NOT present for 6 months
+        //Step C; good control not NOT present for 6 months
         if ($msgCode == "L") {
-            $msgText = "<p>This patient reports good control on Step 3 treatment. Continue with the same regimen and plan to review in one year.</p>";
+            $msgText = "<p>This person reports good control on \"Initial Add-on Therapy\". Continue with the same regimen and plan to review in one year.</p>";
         }
 
-        //Step 3; partial control and good or unknown last time; acute reason
+        //Step C; partial control and good or unknown last time; acute reason
         if ($msgCode == "N1") {
 
-            $msgText = "<p>This patients control is not as good as it should be.</p>";
+            $msgText = "<p>This persons control is not as good as it should be.</p>";
 
             if ($AcuteReason == "Y") {
-                "<p>This patient has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs.</p>";
+                "<p>This person has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs.</p>";
             }
 
             if ($InhalerTechnique == "N") {
@@ -2363,35 +2550,27 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         }
 
-        //Step 3; partial control and good or unknown last time; no acute reason; maintain therapy
+        //Step C; partial control and good or unknown last time; no acute reason; maintain therapy
         if ($msgCode == "N2a") {
-            $msgText = "<p>This patient is only partially controlled on Step 3 therapy but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to  maintain current level of therapy with an earlier review to assess if more therapy may be needed. Plan to review in 3 – 6 months to check that control is re-established.</p>";
+            $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to  maintain current level of therapy with an earlier review to assess if more therapy may be needed. Plan to review in 3 – 6 months to check that control is re-established.</p>";
         }
 
-        //Step 3; partial control and good or unknown last time; no acute reason; step up within Step 3
+        //Step C; partial control and good or unknown last time; no acute reason; step up within Step C
         if ($msgCode == "N2b") {
-            $msgText = "<p>This patient is only partially controlled on Step 3 therapy but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to step up the therapy within the Step 3 range. In general this means using Inhaled steroids supported by a LABA. Plan to review in 3 – 6 months to check that control is re-established.</p>";
+            $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to step up the therapy within the Step C range. In general this means using Inhaled steroids supported by a LABA. Plan to review in 3 – 6 months to check that control is re-established.</p>";
         }
 
-        //Step 3; partial control and good or unknown last time; no acute reason; SMART therapy
+        //Step C; partial control and good or unknown last time; no acute reason; SMART therapy
         if ($msgCode == "N2c") {
-            $msgText = "<p>This patient is only partially controlled on Step 3 therapy but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to step up the therapy within the Step 3 range by switching to(S)MART therapy. Plan to review in 3 – 6 months to check that control is re-established.</p>";
+            $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to step up the therapy within the Step C range by switching to(S)MART therapy. Plan to review in 3 – 6 months to check that control is re-established.</p>";
         }
 
-        //Step 3; partial control and good or unknown last time; no acute reason; step up to Step 4
+        //Step C; partial control and good or unknown last time; no acute reason; step up to Step 4
         if ($msgCode == "N2d") {
-            $msgText = "<p>This patient is only partially controlled on Step 3 therapy but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to step up to Step 4 levels of therapy";
-
-            if ($ReferFormalAssessment == "Y") {
-                $msgText = $msgText . " and have referred for a further specialist assessment to <i>" . $ReferalDetails . ".</i></p>";
-            } else {
-                $msgText = $msgText . ".</p>";
-            }
-
-            $msgText = $msgText . "<p>Plan to review in 3 – 6 months to check that control is re-established.</p>";
+            $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" but it has been good (or was unknown) at the previous visit. Inhaler technique and medicine adherence are good and you have chosen to step up to increase the dose of inhaled ICS to 800mcg/day BDP equivalent or to add an LTRA. Plan to review in 3 months to check that control is re-established.</p>";
         }
 
-        //Step 3; poor control this time, or partial this time and partial or poor last time; acute reason; maintain therapy
+        //Step C; poor control this time, or partial this time and partial or poor last time; acute reason; maintain therapy
         if ($msgCode == "O1") {
 
             $eduProblem = "";
@@ -2413,114 +2592,194 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             }
 
             if ($UsedControl == "Partial") {
-                $msgText = "<p>This patient is only partially controlled on Step 3 therapy and it was not good at the previous visit. ";
+                $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" but it was not good (or was unknown) at the previous visit. ";
             } else {
-                $msgText = "<p>This patient is poorly controlled on Step 3 therapy. ";
+                $msgText = "<p>This person is poorly controlled on \"Initial Add-on Therapy\" but it was not good (or was unknown) at the previous visit. ";
             }
 
-            $msgText = $msgText . "You have chosen to maintain current level of therapy and review earlier to assess if improvements in " . $eduProblem . " with or without educational support can restore control.</p>";
+            $msgText = $msgText . "You have chosen to maintain current level of therapy and review earlier eg 1-3 months to assess if improvements in " . $eduProblem . " with or without educational support can restore control</p>";
 
             #if($ReferFormalAssessment == "Y"){
             #	$msgText = $msgText."<p>You have chosen to refer for specialist advice to ".$ReferalDetails.".</p>" ;
             #}
         }
 
-        //Step 3; poor control this time, or partial this time and partial or poor last time; acute reason; SMART therapy
+        //Step C; poor control this time, or partial this time and partial or poor last time; acute reason; SMART therapy
         if ($msgCode == "O2") {
 
             if ($UsedControl == "Partial") {
-                $msgText = "<p>This patient is only partially controlled on Step 3 therapy and it was not good at the previous visit. ";
+                $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" and it was not good at the previous visit. ";
             } else {
-                $msgText = "<p>This patient is poorly controlled on Step 3 therapy. ";
+                $msgText = "<p>This person is poorly controlled on \"Initial Add-on Therapy\". ";
             }
 
-            $msgText = $msgText . " You have chosen to  switch to a trial of a (S)MART regime</p>";
+            $msgText = $msgText . " You have chosen to  switch to a trial of a MART regime and should review in 1-3 months to check that control is re-established</p>";
 
             #if($ReferFormalAssessment == "Y"){
             #	$msgText = $msgText."<p>You have chosen to refer for specialist advice to ".$ReferalDetails.".</p>" ;
             #}
         }
 
-        //Step 3; poor control this time, or partial this time and partial or poor last time; acute reason; step up to Step 4
+        //Step C; poor control this time, or partial this time and partial or poor last time; acute reason; step up to Step 4
         if ($msgCode == "O3") {
 
             if ($UsedControl == "Partial") {
-                $msgText = "<p>This patient is only partially controlled on Step 3 therapy and it was not good at the previous visit. ";
+                $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" and it was not good at the previous visit. ";
             } else {
-                $msgText = "<p>This patient is poorly controlled on Step 3 therapy. ";
+                $msgText = "<p>This person is poorly controlled on \"Initial Add-on Therapy\". ";
             }
 
-            $msgText = $msgText . " You have chosen to  step up to Step 4 levels of therapy</p>";
-
-            if ($ReferFormalAssessment == "Y") {
-                $msgText = $msgText . "<p>You have chosen to refer for specialist advice to " . $ReferalDetails . ".</p>";
-            } else {
-                $msgText = $msgText . "<p>You have chosen not to refer for specialist advice.</p>";
-            }
-
-            $msgText = $msgText . "Plan to review in 3 – 6 months to check that control is re-established.</p>";
+            $msgText = $msgText . " You have chosen to  step up to increase the dose of inhaled ICS to 800mcg/day BDP equivalent or to add an LTRA. </p>";
+            $msgText = $msgText . "Plan to review in 3 months to check that control is re-established</p>";
         }
 
-        //Step 3; poor control this time, or partial this time and partial or poor last time; no acute reason; SMART therapy
+        //Step C; poor control this time, or partial this time and partial or poor last time; no acute reason; SMART therapy
         if ($msgCode == "Q1") {
 
             if ($UsedControl == "Partial") {
-                $msgText = "<p>This patient is only partially controlled on Step 3 therapy and it was not good at the previous visit. ";
+                $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" and it was not good at the previous visit. ";
             } else {
-                $msgText = "<p>This patient is poorly controlled on Step 3 therapy. ";
+                $msgText = "<p>This person is poorly controlled on \"Initial Add-on Therapy\". ";
             }
 
-            $msgText = $msgText . "Both inhaler technique and adherence to medicines are reported to be good and there is no acute reason so consider stepping up therapy to regain control.  You have chosen to switch to (S)MART therapy.</p>";
+            $msgText = $msgText . "Both inhaler technique and adherence to medicines are reported to be good, so you have chosen to switch to MART therapy, and should review in 1-3 months to check that control is re-established</p>";
 
             #if($ReferFormalAssessment == "Y"){
             #	$msgText = $msgText."<p>You have chosen to refer for specialist advice to ".$ReferalDetails.".</p>" ;
             #}
         }
 
-        //Step 3; poor control this time, or partial this time and partial or poor last time; no acute reason; step up to Step 4
+        //Step C; poor control this time, or partial this time and partial or poor last time; no acute reason; step up to Step 4
         if ($msgCode == "Q2") {
-
             if ($UsedControl == "Partial") {
-                $msgText = "<p>This patient is only partially controlled on Step 3 therapy and it was not good at the previous visit. ";
+                $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" and it was not good at the previous visit. ";
             } else {
-                $msgText = "<p>This patient is poorly controlled on Step 3 therapy. ";
+                $msgText = "<p>This person is poorly controlled on \"Initial Add-on Therapy\". ";
             }
 
-            $msgText = $msgText . "Both inhaler technique and adherence to medicines are reported to be good and there is no acute reason so consider stepping up therapy to regain control. You have chosen to step up to Step 4 therapy.</p>";
-
-            if ($ReferFormalAssessment == "Y") {
-                $msgText = $msgText . "<p>You have chosen to refer for specialist advice to " . $ReferalDetails . ".</p>";
-            } else {
-                $msgText = $msgText . "<p>You have chosen not to refer for specialist advice.</p>";
-            }
-
-            $msgText = $msgText . "Plan to review in 3 – 6 months to check that control is re-established.</p>";
+            $msgText = $msgText . "Both inhaler technique and adherence to medicines are reported to be good so consider stepping up therapy to regain control \"Initial Add-on Therapy\" and should review in 1-3 months to check that control is re-established</p>";
         }
 
-        //Step 4-5; good or partial control for at least 3 months; step down therapy; step down has NOT failed before
+        if ($msgCode == "Q3") {
+            if ($UsedControl == "Partial") {
+                $msgText = "<p>This person is only partially controlled on \"Initial Add-on Therapy\" and it was not good at the previous visit. ";
+            } else {
+                $msgText = "<p>This person is poorly controlled on \"Initial Add-on Therapy\". ";
+            }
+
+            $msgText = $msgText . "You have chosen to step up to increase the dose of inhaled ICS to 800mcg/day BDP equivalent or to add an LTRA. Plan to review in 3 months to check that control is re-established</p>";
+        }
+
+        // Step D:
+        switch ($msgCode) {
+            case "DGY":
+                $msgText = "<p>This person reports good control on \"Additional Controller Therapy\". Control was also good 3 months ago, and if has been stable over the whole period, then consider if step down may be appropriate. Plan to review in one year, but make it clear that if stepping down causes symptoms to return the person may resume their previous dosage.</p>";
+                break;
+            case "DGN":
+                $msgText = "<p>This person reports good control on \"Additional Controller Therapy\". Continue with the same regimen and plan to review in one year</p>";
+                break;
+            case "DPYT":
+                $msgText = "<p>This persons control is not as good as it should be.  [and then whichever of the three applies or all]   “This person has an acute reason for being worse that may benefit from a temporary increase in current inhaled drugs”.<br>“Inhaler technique has not been optimal – correct and plan to reassess control in the near future “<br>“Adherence to therapy seems to be a problem – advise and and plan to reassess control in the near future”<br>Because this  this is  the first time limited control has  been noted,  it is reasonable to maintain existing therapy unchanged but to review in three months  to make sure that control has been regained.    </p>";
+                break;
+            case "DPGF1":
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy” but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to  maintain current level of therapy with an earlier review to  assess if more therapy may be needed. Plan to review in 3 months to check that control is re established</p>";
+                break;
+            case "DPGF2":
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to step up the therapy  within“iniitial Add-on therapy”  range by switching to MART therapy. Plan to review in 3  months to check that control is re established</p>";
+                break;
+            case "DPGF31":
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy” but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to  step up the therapy  within “Additional Controller therapy” range by adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place). Plan to review in 3 months to check that control is re established</p>";
+                break;
+            case "DPGF32":
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and It would be beneficial to seek specialist advice.   Plan to maintain current therapy pending that opinion. Plan to review in 3 months to check progress. </p>";
+                break;
+            case "DPGF33":
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good.   The decision is to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline.  Plan to review in 1-3 months to check Control is -established. </p>";
+                break;
+            case "DPPT1":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText = $msgText . " You have chosen to maintain current level of therapy and review earlier eg 1-3 months to  assess if improvements in technique and/or adherence with or without educational support can restore control </p>";
+                break;
+            case "DPPT2":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText .= "  You have  chosen to  increase therapy  within “Additional Controller therapy” range by adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place).and should review in 1-3 months</p>";
+                break;
+            case "DPPT3Y":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText .= " Options are to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline. Plan to review in 1-3 months to check Control is -established. </p>";
+                break;
+            case "DPPT3N":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText .= "it would be beneficial to seek specialist advice.   Plan to maintain current therapy pending that opinion and review in 3 months to check progress. </p>";
+                break;
+            case "DPPF1":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText .= "Both inhaler technique and adherence to medicines are reported to be good so consider stepping up to therapy to regain control.   You have  chosen to  increase therapy  within “Additional Controller therapy” range by adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place).and should review in 1-3 months</p>";
+                break;
+            case "DPPF2N":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText .= "Both inhaler technique and adherence to medicines are reported to be good   it would be beneficial to seek specialist advice.   Plan to maintain current therapy or consider a temporary additional treatment  pending that opinion and review in 3 months to check progress</p>";
+                break;
+            case "DPPF2Y":
+                if ($UsedControl == "Good") {
+                    $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  and it was not good at the previous visit. ";
+                } else {
+                    $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
+                }
+                $msgText .= "oth inhaler technique and adherence to medicines are reported to be good.  Options are to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline.    Plan to review in 1-3 months to check Control is established. </p>";
+                break;
+            default:
+                break;
+        }
+
+        //Step E1/E2; good or partial control for at least 3 months; step down therapy; step down has NOT failed before
         if ($msgCode == "D1") {
-            $msgText = "<p>This patient's asthma control has been adequate for more than 3 months and so it is recommended to try stepping down therapy. Plan to review in one year.</p>";
+            $msgText = "<p>This person's asthma control has been adequate on \"Specialist Therapies\" for more than 3 months and so it is recommended to try stepping down therapy. Plan to review in one year, but make it clear that if stepping down causes symptoms to return the person may resume their previous dosage.</p>";
         }
 
-        //Step 4-5; good or partial control for at least 3 months; step down therapy; step down has failed before
+        //Step E1/E2; good or partial control for at least 3 months; step down therapy; step down has failed before
         if ($msgCode == "D2") {
-            $msgText = "<p>This patient's asthma control has been adequate for more than 3 months and it's known that previous attempts to step down were not successful. Maintain same level of therapy. Plan to review in one year.</p>";
+            $msgText = "<p>This person's asthma control has been adequate on \"Specialist Therapies\" for more than 3 months and it's known that previous attempts to step down were not successful. Maintain same level of therapy. Plan to review in one year.</p>";
         }
 
-        //Step 4-5; good or partial control for at least 3 months; do not wish to step down therapy
+        //Step E1/E2; good or partial control for at least 3 months; do not wish to step down therapy
         if ($msgCode == "D3") {
-            $msgText = "<p>This patient's asthma control has been adequate for more than 3 months; step down might be possible but it has been decided to maintain the same level of therapy. Plan to review in one year unless there is a need to review changes.</p>";
+            $msgText = "<p>This person's asthma control has been adequate on \"Specialist Therapies\" for more than 3 months; Step down might be possible but it has been decided to maintain the same level of therapy. Plan to review in one year unless there is a need to review changes.</p>";
         }
 
-        //Step 4-5; good or partial control but not present for at least 3 months
+        //Step E1/E2; good or partial control but not present for at least 3 months
         if ($msgCode == "D4") {
-            $msgText = "<p>This patient's asthma control has been adequate. Maintain the same level of therapy. Plan to review in one year.</p>";
+            $msgText = "<p>This person's asthma control has been adequate on \"Specialist Therapies\" but it was not so good last time. Maintain the same level of therapy. Plan to review in one year.</p>";
         }
 
-        //Step 4-5; poor control; acute reason
+        //Step E1/E2; poor control; acute reason
         if ($msgCode == "D6") {
 
-            $msgText = "<p>This patients asthma control has not been good despite Step 4 / 5 asthma guidelines therapy.</p>";
+            $msgText = "<p>This persons asthma control has not been good despite on \"Specialist Therapies\" of asthma guidelines therapy.</p>";
 
             If ($AdherenceToTherapyAdequate != "Y") {
                 $msgText = $msgText . "<p>Looking at the prescription record it seems that this person has not collected the no of scripts necessary for full dosage. Give advice on the importance of regular daily treatment doses.</p>";
@@ -2533,87 +2792,174 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             }
 
             If ($AcuteReason != "N") {
-                $msgText = $msgText . "<p>You have identified some acute reasons for deterioration today – it is recommended to manage those.</p>";
+                $msgText = $msgText . "<p>You have identified some acute reasons for deterioration today – please manage those as necessary outwith the program. The current prescription level has been maintained while referring for more advice from the specialist service " . $ReferalDetails . "</p>";
             }
 
-            If ($UnderHospitalCare == "Y" && $ReferFormalAssessment == "Y") {
-                $msgText = $msgText . "<p>This patient is under specialist care and has been re referred for more advice.</p>";
-            } ElseIf ($UnderHospitalCare == "Y") {
-                $msgText = $msgText . "<p>This patient is under specialist care.</p>";
-            } ElseIf ($ReferFormalAssessment == "Y") {
-                $msgText = $msgText . "<p>This patient has been referred for a specialist assessment to " . $ReferalDetails . ".</p>";
+            $msgText = $msgText . "<p>Arrange to reassess their Asthma earlier than usual to check the above have been resolved and consider the specialist advice.</p>";
+        }
+
+        if ($msgCode == "D6a" || $msgCode == "D6b" || $msgCode == "D6c") {
+
+            $msgText = "<p>This persons asthma control has not been good despite on \"Specialist Therapies\" of asthma guidelines therapy.</p>";
+
+            If ($AdherenceToTherapyAdequate != "Y") {
+                $msgText = $msgText . "<p>Looking at the prescription record it seems that this person has not collected the no of scripts necessary for full dosage. Give advice on the importance of regular daily treatment doses.</p>";
             }
 
+            if ($NonPharmaRxInhalerTechniqueChecked == "N") {
+                $msgText = $msgText . "<p>Inhaler technique has not been checked.</p>";
+            } elseif ($InhalerTechniqueAdequate != "Y") {
+                $msgText = $msgText . "<p>A check of inhaler technique suggests that not all the inhaled drugs have been reaching the airways. Advice has been given.</p>";
+            }
+
+            If ($AcuteReason != "N") {
+                if ($msgCode == "D6a" || $msgCode == "D6c") {
+                    $msgText = $msgText . "<p>You have identified some acute reasons for deterioration today – please manage those as necessary outwith the program. The current prescription level has been maintained.</p>";
+                } else {
+                    $msgText = $msgText . "<p>You have identified some acute reasons for deterioration today – please manage those as necessary outwith the program. The current prescription level has been maintained while referring for more advice from the specialist service.</p>";
+                }
+            }
+
+            if ($msgCode == "D6a") {
+                $msgText = $msgText . "<p>This person is also under specialist care but have decided more specialist advice is not needed now. Please to reassess their Asthma earlier than usual to check the above issues have been resolved and control is restored.</p>";
+            } elseif ($msgCode == "D6b") {
+                $msgText = $msgText . "<p>Arrange to reassess their Asthma earlier than usual to check the above have been resolved and consider the specialist advice.</p>";
+            } else {
+                $msgText = $msgText . "<p>This person is not having specialist care follow up and you have decided re-referral is not needed now. Plan to reassess their Asthma earlier than usual to check the above issues have been resolved and control is restored.</p>";
+            }
         }
 
         /*if ($msgCode == "D7"){
-            $msgText = "<p>This patients asthma control has not been good despite step 4/5 asthma guidelines therapy. A check of inhaler technique suggests that not all the inhaled drugs have been reaching the airways. Advice has been given and it is recommended to continue the current prescription level. Reassess earlier than usual to check this has worked.</p>";
+            $msgText = "<p>This persons asthma control has not been good despite step 4/5 asthma guidelines therapy. A check of inhaler technique suggests that not all the inhaled drugs have been reaching the airways. Advice has been given and it is recommended to continue the current prescription level. Reassess earlier than usual to check this has worked.</p>";
         }*/
 
-        //Step 4-5; poor control; NO acute reason; First Assesment or routine Follow Up; under the care of specialist service; awaiting advice
+        //Step E1/E2; poor control; NO acute reason; First Assesment or routine Follow Up; under the care of specialist service; awaiting advice
         if ($msgCode == "D5A") {
-            $msgText = "<p>This patient is known to the asthma specialist service but still reports poor control despite good inhaler technique and concordance. You have chosen to continue present therapy pending further asthma specialist advice.</p>";
+            $msgText = "<p>This person is known to the asthma specialist service but still reports poor control on “Specialist Therapies” despite good inhaler technique and concordance.   You have chosen to continue present therapy pending further asthma specialist advice. Plan to review that advice and reassess earlier than usual</p>";
+            $msgText = $msgText . $ReferalDetails;
         }
 
-        //Step 4-5; poor control; NO acute reason; First Assesment or routine Follow Up; under the care of specialist service; increase therapy
+        //Step E1/E2; poor control; NO acute reason; First Assesment or routine Follow Up; under the care of specialist service; increase therapy
         if ($msgCode == "D5B") {
-            $msgText = "<p>This patient is known to the asthma specialist service but still reports poor control despite good inhaler technique and concordance. You have chosen to increase therapy today to achieve that.</p>";
+            $msgText = "<p>This person is known to the asthma specialist service but still reports poor control on “Specialist Therapies” despite good inhaler technique and concordance.   You have chosen to  increase therapy today to achieve that. You do not feel more specialist advice is needed at the moment : plan to review earlier to assess the effect of the added therapy.</p>";
         }
 
-        //Step 4-5; poor control; NO acute reason; First Assesment or routine Follow Up; under the care of specialist service; short course of oral steroid
+        //Step E1/E2; poor control; NO acute reason; First Assesment or routine Follow Up; under the care of specialist service; short course of oral steroid
         if ($msgCode == "D5C") {
-            $msgText = "<p>This patient is known to the asthma specialist service but still reports poor control despite good inhaler technique and concordance. You have decided that the loss of control may be a temporary exacerbation, so prescribe a short course of oral steroid to regain control.</p>";
+            $msgText = "<p>This person is known to the asthma specialist service but still reports poor control on “Specialist Therapies” despite good inhaler technique and concordance.   Your have decided that the loss of control may be a temporary exacerbation, so prescribe a short course of oral steroid to regain control. Plan to review earlier than usual (eg 3 months) to assess the effect and reconsider if more specialist help may be required. </p>";
         }
 
-        //Step 4-5; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; referred for formal assessment
+        //Step E1/E2; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; referred for formal assessment
         if ($msgCode == "D8") {
-            $msgText = "<p>This patient's asthma control has not been good despite Step 4/5 asthma guidelines therapy, and checks on concordance and inhaler technique suggest it's being used properly. It's appropriate to consider stepping up therapy but first they are being referred for a specialist asthma clinic assessment.</p>";
+            $msgText = "<p>This persons asthma control has not been Poor in spite of  asthma guidelines “Specialist Therapies” treatment, and checks on concordance and inhaler technique suggest its being used properly. Its appropriate to consider stepping up therapy (with a theophylline or Long acting antimuscarinic if not already used). And to refer back to the specialist asthma Service for re-assessment, and consideration of alternatives to oral steroids. Plan to review earlier (eg 3 months)  than usual to assess the outcome of these changes and the advice of the specialist service. </p>";
+            $msgText = $msgText . $ReferalDetails;
         }
 
-        //Step 4; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; NOT referred for formal assessment; step up within Step 4
-        if ($msgCode == "D9a") {
-            $msgText = "<p>This patient's asthma control has not been good despite Step 4 asthma guidelines therapy, and checks on concordance and inhaler technique suggest it's being used properly. You have chosen to step up therapy within Step 4. Plan to review within 3-6 months to assess the effect of this.</p>";
+        //Step E1/E2; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; NOT referred for formal assessment; step up within Step 4
+        if ($msgCode == "D8a") {
+            $msgText = "<p>This persons asthma control has not been Poor in spite of  asthma guidelines “Specialist Therapies” treatment, and checks on concordance and inhaler technique suggest its being used properly. Its appropriate to consider stepping up therapy (with a theophylline or Long acting antimuscarinic if not already used). Guidelines recommend specialist asthma advice at this stage and especially if long term oral steroids are to also be considered, because only those clinics have access to the alternative options. You have decided that referrsl is not required today.    Plan to review earlier (eg 3 months)  than usual to assess the outcome of these changes.  </p>";
         }
 
-        //Step 4; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; NOT referred for formal assessment; step up to Step 5
-        if ($msgCode == "D9b") {
-            $msgText = "<p>This patient's asthma control has not been good despite Step 4 asthma guidelines therapy, and checks on concordance and inhaler technique suggest it's being used properly. You have chosen to increase the dose of oral steroids. Plan to reassess early e.g. 1-3 months, to assess the effect of this.</p>";
+        //Step E1/E2; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; NOT referred for formal assessment; step up to Step 5
+        if ($msgCode == "Da") {
+            $msgText = "<p>This persons asthma control has not been good despite being on “Regular oral steroids” Concordance and Inhaler technique have been checked and are good. The person is to be referred for an early appointment to the asthma specialist service to reassess their asthma and consider if one of the alternatives to oral steroids is appropriate.  Consider if a temporary increase in oral steroids may be needed to tide over until the appointment but maintain other therapy. Plan early review to assess the outcome of the referral. </p>";
+            $msgText = $msgText . $ReferalDetails;
+        }
+        if ($msgCode == "Db") {
+            $msgText = "<p>This persons asthma control has not been good despite being on “Regular oral steroids” Concordance and Inhaler technique have been checked and are good. Asthma Guidelines suggest referral at this stage to the asthma specialist service to reassess their asthma and consider if one of the alternatives to oral steroids is appropriate.  You do not feel it right for this person and will continue local management – with perhaps an increase in oral steroids.    This is beyond the scope of this package which will exit this person.  Plan frequent follow-ups and these should be with a doctor experienced in asthma care. NEED TO ADD ADDITIONAL SECTION TO THE LETTER TO SHOW THAT CARE IS BEING PASSED ON TO AN INDIVIDUAL (IDEALLY NAMED) WITHIN THE PRACTICE AND THEN CREATE AN ALERT IF THERE IS AN ATTEMPT TO RE ENTER THE PT SAY 3 MONHTS ON.     ASK – “This person was on regular oral steroids when last seen without oversight of an asthma specialist service.  This is beyond the scope of this package.   Care was passed to ……         for individualised management.     If the situation has changed and specialist advice has been obtained then its fine to  re enter this person to the computer guided consultations.    If no specialist advice has been obtained, then please be aware that this situation is outwith the scope of the package and its recommendations.    Individualised care should be from a local doctor experienced in asthma care .  AND block the latter entering the package.    </p>";
         }
 
-        //Step 5; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; NOT referred for formal assessment; maintain therapy
-        if ($msgCode == "D11a") {
-            $msgText = "<p>This patient's asthma control has not been good despite Step 5 asthma guidelines therapy, and checks on concordance and inhaler technique suggest it's being used properly. You have elected to keep the patient on the same dose of oral steroid despite symptoms. Are you sure that specialist advice would not help? Plan to reassess in 1-3 months.</p>";
-        }
-
-        //Step 5; poor control; NO acute reason; First Assesment or routine Follow Up; NOT under the care of specialist service; NOT referred for formal assessment; increase therapy
-        if ($msgCode == "D11b") {
-            $msgText = "<p>This patient's asthma control has not been good despite Step 5 asthma guidelines therapy, and checks on concordance and inhaler technique suggest it's being used properly. You have elected to increase the dose of oral steroid. Are you sure that specialist advice would not help? Plan to reassess in 1-3 months.</p>";
-        }
-
-        //Step 4-5; poor control; NO acute reason; Annual Review; NOT referred for formal assessment; try another Step 4/5 therapy
+        //Step E1/E2; poor control; NO acute reason; Annual Review; NOT referred for formal assessment; try another Step 4/5 therapy
         if ($msgCode == "ARa") {
-            $msgText = "<p>This patient has not responded as well as expected to Step 4/5 therapy and is reporting poor control. In the absence of obvious remediable factors the choices open to you are to reconsider the diagnosis, and then either to refer for " . $specialistAdvice . " or perform more investigations yourself. You have chosen to continue management at the practice and to increase Step 4/5 therapy and to reassess in 3-6 month to assess the effect.</p>";
+            $msgText = "<p>This person has not responded as well as expected to “Specialised therapies”  and is reporting poor control, despite good concordance and inhaler technique.  There is good evidence to support the diagnosis of asthma, but In the absence of obvious remediable factors, the decision is to re refer to the specialised asthma service so they can be reassessed and considered for other therapies or one of the biologic agents. In the meantime consider if a theophylline or a long acting antimuscarinic inhaler (if not already used) may help. Plan early review in 3-6 months to assess the outcome of that referral and whether control has been re attained.  </p>";
+            $msgText = $msgText . $ReferalDetails;
         }
 
-        //Step 4-5; poor control; NO acute reason; Annual Review; NOT referred for formal assessment; arrange more tests (NOT 'definite' diagnosis)
+        //Step E1/E2; poor control; NO acute reason; Annual Review; NOT referred for formal assessment; arrange more tests (NOT 'definite' diagnosis)
         if ($msgCode == "ARb") {
-            $msgText = "<p>This patient has not responded as well as expected to Step 4/5 therapy and is reporting poor control. In the absence of obvious remediable factors the choices open to you are to reconsider the diagnosis with more tests, and then either to refer for " . $specialistAdvice . " or perform more investigations yourself. You have chosen to perform more tests to achieve a positive confirmation of diagnosis and to maintain long term therapy pending the results. Some short term adjustments are allowed.</p>";
+            $msgText = "<p>This person has not responded as well as expected to “Specialised therapies”  and is reporting poor control, despite good concordance and inhaler technique.  There is good evidence to support the diagnosis of asthma, but In the absence of obvious remediable factors, you have decided not to re refer to the specialised asthma service re assessment or consideration of other therapies or one of the newer biologic agents. In the meantime consider if a theophylline or a long acting antimuscarinic inhaler (if not already used) may help. Plan early review in 3-6 months to assess the outcome of that referral and whether control has been re attained. </p>";
+            $msgText = $msgText . $ReferalDetails;
         }
 
-        //Step 4-5; poor control; NO acute reason; Annual Review; NOT referred for formal assessment; hospital referral
+        //Step E1/E2; poor control; NO acute reason; Annual Review; NOT referred for formal assessment; hospital referral
         if ($msgCode == "ARc") {
-            $msgText = "<p>This patient has not responded as well as expected to Step 4/5 therapy and is reporting poor control. In the absence of obvious remediable factors the choices open to you are to reconsider the diagnosis, and then either to refer for " . $specialistAdvice . " or perform more investigations yourself. You have chosen to " . $referReRefer . " for specialist advice to " . $ReferalDetails . " asking for more positive confirmation of diagnosis while maintaining long term therapy pending the outcome. Some short term adjustments are allowed.</p>";
+            $msgText = "<p>This person has not responded as well as expected to “Specialised therapies”  and is reporting poor control, despite good concordance and inhaler technique.  There is only weak evidence to support the diagnosis of asthma, so In the absence of obvious remediable factors, you have decided to re refer to the specialised asthma service so the diagnosis can be reassessed and appropriate management including other therapies considered. In the meantime consider if a theophylline or a long acting antimuscarinic inhaler (if not already used) may help. Plan early review in 3-6 months to assess the outcome of that referral and whether control has been re attained.      </p>";
+            $msgText = $msgText . $ReferalDetails;
         }
 
-        //Step 4-5; poor control; NO acute reason; Annual Review; referred for formal assessment
+        //Step E1/E2; poor control; NO acute reason; Annual Review; referred for formal assessment
         if ($msgCode == "ARd") {
-            $msgText = "<p>This patient has not responded as well as expected to Step 4/5 therapy and is reporting poor control. In the absence of obvious remediable factors the choices open to you are to reconsider the diagnosis, and then either to refer for (further) specialist advice or perform more investigations yourself. You have chosen to " . $referReRefer . " for specialist advice to " . $ReferalDetails . " earlier in the consultation. Some short term adjustments are allowed.</p>";
+            $msgText = "<p>This person has not responded as well as expected to “Specialised therapies”  and is reporting poor control, despite good concordance and inhaler technique.  There is only weak evidence to support the diagnosis of asthma, so In the absence of obvious remediable factors, Asthma Guidelines suggest referral at this stage to the asthma specialist service so the diagnosis can be reassessed and appropriate management including other therapies considered.   You do not feel it right for this person and will continue local management – with perhaps an increase in oral steroids.    This is beyond the scope of this package which will exit this person.  Plan frequent follow-ups and these should be with a doctor experienced in asthma care.  “This person was on regular oral steroids when last seen without oversight of an asthma specialist service.  This is beyond the scope of this package.   Care was passed to ……         for individualised management.     If the situation has changed and specialist advice has been obtained then its fine to  re enter this person to the computer guided consultations.    If no specialist advice has been obtained, then please be aware that this situation is outwith the scope of the package and its recommendations.    Individualised care should be from a local doctor experienced in asthma care .  AND block the latter entering the package.    </p>";
         }
 
+        if ($msgCode == "ARe") {
+            $msgText = "<p>This person has not responded as well as expected to “Specialised therapies”  and is reporting poor control, despite good concordance and inhaler technique.  There is good evidence to support the diagnosis of asthma, but In the absence of obvious remediable factors, they have already been referred to the specialised asthma service for  reassessment and consideration of other therapies or one of the biologic agents. In the meantime consider if a theophylline or a long acting antimuscarinic inhaler (if not already used) may help. Plan early review in 3-6 months to assess the outcome of that referral and whether control has been re attained.      </p>";
+        }
+
+        if ($msgCode == "F1") {
+            $msgText = "<p>This persons asthma control has been adequate on “Specialist Therapies” for more than 3 months and so If its appropriate to  try stepping down therapy.l  Plan review in one year - but make it clear that if stepping down causes symptoms to return the person may resume their previous dosage. NB: If the person is on long term oral steroids then despite the good control, Guidelines recommend they should be under the care of an asthma specialist centre to have access to alternative therapies – please refer </p>";
+        }
+
+        if ($msgCode == "F2") {
+            $msgText = "<p>This persons asthma control has been adequate on “Specialist Therapies” for more than 3 months and its known that previous attempts to step down were not successful. Maintain same level of therapy  Plan review in one year. NB: If the person is on long term oral steroids then despite the good control, Guidelines recommend they should be under the care of an asthma specialist centre to have access to alternative therapies – please refer </p>";
+        }
+        if ($msgCode == "F3") {
+            $msgText = "<p>This persons asthma control has been adequate on “Specialist Therapies”for more than 3 months.  step down might be possible but it has been decided to maintain same level of therapy  Plan review in one year unless there is a need to review changes B: If the person is on long term oral steroids then despite the good control, Guidelines recommend they should be under the care of an asthma specialist centre to have access to alternative therapies – please refer </p>";
+        }
+        if ($msgCode == "F4") {
+            $msgText = "<p>This persons asthma control has been adequate. Maintain same level of therapy  Plan review in one year B: If the person is on long term oral steroids then despite the good control, Guidelines recommend they should be under the care of an asthma specialist centre to have access to alternative therapies – please refer </p>";
+        }
+        if ($msgCode == "G1") {
+            $msgText = "<p>This person Is on specialist therapies and has identifiable reasons for their current poor asthma control.  Copy section on individual factors. As they have not been assessed by a specialist asthma service, they are being referred as recommended by Asthma Guidelines. Consider if a temporary increase in oral steroids may be needed to tide over until the appointment but maintain other therapy. Plan to reassess early e.g. 3 months, to assess the effect of correcting the above reasons and the advice from the clinic. </p>";
+            $msgText = $msgText . $ReferalDetails;
+
+        }
+        if ($msgCode == "G2") {
+            $msgText = "<p>This person Is on specialist therapies and has identifiable reasons for their current poor asthma control.</p>";
+
+            If ($AdherenceToTherapyAdequate != "Y") {
+                $msgText = $msgText . "<p>Looking at the prescription record it seems that this person has not collected the no of scripts necessary for full dosage. Give advice on the importance of regular daily treatment doses.</p>";
+            }
+            if ($NonPharmaRxInhalerTechniqueChecked == "N") {
+                $msgText = $msgText . "<p>Inhaler technique has not been checked.</p>";
+            } elseif ($InhalerTechniqueAdequate != "Y") {
+                $msgText = $msgText . "<p>A check of inhaler technique suggests that not all the inhaled drugs have been reaching the airways. Advice has been given.</p>";
+            }
+
+            If ($AcuteReason != "N") {
+                $msgText = $msgText . "<p>You have identified some acute reasons for deterioration today – please manage those as necessary outwith the program. The current prescription level has been maintained.</p>";
+            }
+
+            $msgText = $msgText . "<p>Asthma Guidelines suggest referral at this stage to the asthma specialist service so the diagnosis can be reassessed and appropriate management including other therapies considered.  You do not feel it right for this person and will continue local management – with perhaps an increase in oral steroids.   This is beyond the scope of this package which will exit this person.  Plan frequent follow-ups and these should be with a doctor experienced in asthma care. </p>";
+        }
+
+        if ($msgCode == "G3") {
+            $msgText = "<p>This person Is on “Specialist therapies” and has no identifiable reasons for their current poor asthma control. As they have not been assessed by a specialist asthma service, they are being referred as recommended by Asthma Guidelines.    Consider if a temporary increase in oral steroids may be needed to tide over until the appointment but maintain other therapy. Plan to reassess early e.g. 3 months, to assess the effect of correcting the above reasons and the advice from the clinic. </p>";
+            $msgText = $msgText . $ReferalDetails;
+        }
+
+        if ($msgCode == "G4") {
+            $msgText = "<p>This person Is on specialist therapies and has identifiable reasons for their current poor asthma control.</p>";
+
+            If ($AdherenceToTherapyAdequate != "Y") {
+                $msgText = $msgText . "<p>Looking at the prescription record it seems that this person has not collected the no of scripts necessary for full dosage. Give advice on the importance of regular daily treatment doses.</p>";
+            }
+            if ($NonPharmaRxInhalerTechniqueChecked == "N") {
+                $msgText = $msgText . "<p>Inhaler technique has not been checked.</p>";
+            } elseif ($InhalerTechniqueAdequate != "Y") {
+                $msgText = $msgText . "<p>A check of inhaler technique suggests that not all the inhaled drugs have been reaching the airways. Advice has been given.</p>";
+            }
+
+            If ($AcuteReason != "N") {
+                $msgText = $msgText . "<p>You have identified some acute reasons for deterioration today – please manage those as necessary outwith the program. The current prescription level has been maintained.</p>";
+            }
+
+            $msgText = $msgText . "<p>Asthma Guidelines suggest referral at this stage to the asthma specialist service so the diagnosis can be reassessed and appropriate management including other therapies considered.  You do not feel it right for this person and will continue local management – with perhaps an increase in oral steroids.   This is beyond the scope of this package which will exit this person.  Plan frequent follow-ups and these should be with a doctor experienced in asthma care. </p>";
+        }
         /*
         N2 Question ################################
         "a) Maintain current level of therapy with an earlier review to assess if more therapy may be needed",
-        "b) Step up the therapy within Step 3 range",
+        "b) Step up the therapy within Step C range",
         "c) Switch to (S)MART  therapy",
         "d) Step up to Step 4 levels of therapy by adding another agent or increasing to high dose inhaled steroids"
 
@@ -2650,10 +2996,10 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         //No Medication sub-section
         if ($CurrentMedicationLevel == 0 && $msgCode != "NS" && $msgCode != "STA") {
-            $msgText = "<p><b>This patient has stopped the Step " . $MedicationLevelAtStartOfLastVisit . " treatment suggested last time because <i>" . $NoMedicationReason . ".</i> Please take extra care as you select your therapeutic plan for this person; it may need to be individualised rather than following guidelines rigidly.</b></p><hr>" . $msgText;
+            $msgText = "<p><b>This person has stopped the Step " . $MedicationLevelAtStartOfLastVisit . " treatment suggested last time because <i>" . $NoMedicationReason . ".</i> Please take extra care as you select your therapeutic plan for this person; it may need to be individualised rather than following guidelines rigidly.</b></p><hr>" . $msgText;
             //LABA Alone
         } elseif ($CurrentMedicationLevel == 0 && $msgCode == "NS") {
-            $msgText = "<p><b>This patient was on a non-standard regime and the algorithm cannot be adjusted for this. Please take extra care as you select your therapeutic plan for this person.</b></p>";
+            $msgText = "<p><b>This person was on a non-standard regime and the algorithm cannot be adjusted for this. Please take extra care as you select your therapeutic plan for this person.</b></p>";
         }
 
         //Inhaler Technique sub-section
