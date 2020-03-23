@@ -1578,9 +1578,6 @@ class FlowAlgorithmsLibrary extends FlowLibrary
     function fn_Therapy($arrInputs = array())
     {
 
-        echo json_encode($arrInputs);
-        die();
-
         $FirstAssessmentFastOrStandardTrack = $arrInputs[0];
         $CurrentMedicationLevel = $arrInputs[1];
         $CurrentControl13 = $arrInputs[2];
@@ -1646,13 +1643,13 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         ### Fields to add 03/19/2020
         # TODO: need to be added...
-        $TherapyOptionsN2N2 = $arrInputs[43]; # "Maintain", "MART", "StepUp"
-        $TherapyOptionsOO = $arrInputs[44]; # "Maintain", "Increase", "StepUp"
-        $TherapyOptionsQQ = $arrInputs[45]; # "Increase", "Specialist"
+        $TherapyOptionsN2N2 = "Maintain"; # "Maintain", "MART", "StepUp"
+        $TherapyOptionsOO = "Increase"; # "Maintain", "Increase", "StepUp"
+        $TherapyOptionsQQ = "Increase"; # "Increase", "Specialist"
 
-        $TherapyOptionsN2N2N2 = $arrInputs[46]; # "StepUp", "Refer", "ModifyRx"
-        $TherapyOptionsOOO = $arrInputs[47]; # "Y", "N"
-        $TherapyOptionsQQQ = $arrInputs[48]; # "Y", "N"
+        $TherapyOptionsN2N2N2 = "StepUp"; # "StepUp", "Refer", "ModifyRx"
+        $TherapyOptionsOOO = "Y"; # "Y", "N"
+        $TherapyOptionsQQQ = "Y"; # "Y", "N"
 
         ### Find control to use
         if ($FirstAssessmentFastOrStandardTrack == "Fast Track") {
@@ -1689,10 +1686,10 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         ###CR - Added $AssessmentType
         if ($CurrentMedicationLevel == "0" && !empty($Laba)) {
             ###### On LABA alone #######
-            return $TherapyStream = "NS";
+            $TherapyStream = "NS";
         } elseif ($CurrentMedicationLevel == "0" && $AssessmentType == "1A") {
             ###### STEP 0 and First Assessment #######
-            return $TherapyStream = "STA";
+            $TherapyStream = "STA";
         } else {
             if ($CurrentMedicationLevel == "A") {
                 ###### STEP A #######
@@ -2190,7 +2187,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             }
 
         }
-
+        return $TherapyStream;
     }
 
     /*
