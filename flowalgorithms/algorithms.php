@@ -1366,18 +1366,18 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         // 03/18/2020
         // for updated step algorithm
         // step 0: Step O
-        // step A: As required reliever therapy
-        // step B: Regular preventer therapy
-        // step C: Initial "add on therapy"
-        // step D: Additional Controller therapies
-        // step E1: Specialist therapies            // A patient who is using nebulised therapies enters this step
-        // step E2: Hospital Specialist therapies   // A patient who is using nebulised therapies enters this step
+        // step A , 1: As required reliever therapy
+        // step B , 2: Regular preventer therapy
+        // step C , 3: Initial "add on therapy"
+        // step D , 4: Additional Controller therapies
+        // step E1, 5: Specialist therapies            // A patient who is using nebulised therapies enters this step
+        // step E2, 6: Hospital Specialist therapies   // A patient who is using nebulised therapies enters this step
 //        echo json_encode($CurrentICS);
 //	    die();
 
         // Check if SABA
         if ($CurrentISABA != NULL) {
-            return $MedicationLevel = "A";
+            return $MedicationLevel = "1";
         } else {
             // Check if ICS
             if ($CurrentICS != NULL) {
@@ -1385,16 +1385,16 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 if (intval($CurrentICS) < 400) {
                     // If LABA + MART, then Step C
                     if ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART") {
-                        return $MedicationLevel = "C";
+                        return $MedicationLevel = "3";
                     }
 
                     // If low dose ICS, then Step B
-                    return $MedicationLevel = "B";
+                    return $MedicationLevel = "2";
                 } // If medium does ICS
                 else if (intval($CurrentICS) < 800) {
                     // If medium does ICS + (LABA, LABA + LRTA, or LRTA) , then Step D
                     if ($CurrentILABA != NULL || $CurrentLTRA != NULL) {
-                        return $MedicationLevel = "D";
+                        return $MedicationLevel = "4";
                     }
                 } else {
                     // If high dose ICS + (, LAVA + MART, LAVA + MART + LRTA, LAVA + MART + LAMA, LATA + MART + Theophyline, LAMA/LABA,) , then Step E1
@@ -1405,20 +1405,20 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                         ($CurrentLTRA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART" && $CurrentTheophylline) ||
                         ($CurrentDrugLABALAMA != NULL)
                     ) {
-                        return $MedicationLevel = "E1";
+                        return $MedicationLevel = "5";
                     }
 
-                    return $MedicationLevel = "E1";
+                    return $MedicationLevel = "5";
                 }
 
                 // If low dose ICS + LAVA fixed dose or MART + LRTA, then Step D
                 if ((intval($CurrentICS) < 400 && $CurrentILABA != NULL) || ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART")) {
-                    return $MedicationLevel = "D";
+                    return $MedicationLevel = "4";
                 }
 
                 // If NebSABA or NebSAA or NebICS or InjectableSteroid or OralSteroid
                 if ($CurrentNebSABA != NULL || $CurrentNebSAA != NULL || $CurrentNebICS != NULL || $CurrentDrugLongActingInjectableSteroids != NULL || $CurrentOralSteroids != NULL) {
-                    return $MedicationLevel = "E1";
+                    return $MedicationLevel = "5";
                 }
             }
 
@@ -1682,6 +1682,27 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
 
         // 03/18/2020        Step 0-5 => Step 0, A-E
+        switch ($CurrentMedicationLevel) {
+            case "1":
+                $CurrentMedicationLevel = "A";
+                break;
+            case "2":
+                $CurrentMedicationLevel = "B";
+                break;
+            case "3":
+                $CurrentMedicationLevel = "C";
+                break;
+            case "4":
+                $CurrentMedicationLevel = "D";
+            case "5":
+                $CurrentMedicationLevel = "E1";
+                break;
+            case "6":
+                $CurrentMedicationLevel = "E2";
+                break;
+            default:
+                break;
+        }
 
         ###CR - Added $AssessmentType
         if ($CurrentMedicationLevel == "0" && !empty($Laba)) {
@@ -2187,7 +2208,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             }
 
         }
-        return $TherapyStream;
+        return $TherapyStream = "Unknown ";
     }
 
     /*
@@ -3255,7 +3276,35 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         $LungFuncMessage = "The patient's " . $LfPerformed . " is " . $LfPercent . "% of expected";
 
         $messageHTML = "<h3>Control Assessment</h3>";
-        $messageHTML = $messageHTML . "<p>The patient is on treatment <b>Step " . $CurrentMedication_CurrentMedicationLevel . "</b> (2014 BTS/SIGN Asthma Guidelines), and their overall control has been assessed as <b>" . strtolower($UsedControl) . "</b>. Their control is based on the following:</p>";
+
+        //TODO: This is the message PART, check and update this..... :)
+        $StepTitle = "";
+        switch ($CurrentMedication_CurrentMedicationLevel) {
+            case "0":
+                $StepTitle = "Step 0";
+                break;
+            case "1":
+                $StepTitle = "As Required Reliever Therapy";
+                break;
+            case "2":
+                $StepTitle = "Regular Preventer Therapy";
+                break;
+            case "3":
+                $StepTitle = "Initial Addon-Therapy";
+                break;
+            case "4":
+                $StepTitle = "Additional Controller Therapies";
+                break;
+            case "5":
+            case "6":
+                $StepTitle = "Specialist Therapies";
+                break;
+            default:
+                $StepTitle = "Unknown Step";
+                break;
+        }
+
+        $messageHTML = $messageHTML . "<p>The patient is on treatment <b> " . $StepTitle . "</b> (2014 BTS/SIGN Asthma Guidelines), and their overall control has been assessed as <b>" . strtolower($UsedControl) . "</b>. Their control is based on the following:</p>";
 
         /// Start of table
         $messageHTML = $messageHTML . "<table class=\"control_table\">";

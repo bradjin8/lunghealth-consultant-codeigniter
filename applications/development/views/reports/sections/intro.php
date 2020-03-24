@@ -16,7 +16,7 @@
     ?> <?php echo $objReview->InitialPatientDetails_Surname; 
     ?> is <?php echo (substr($objReview->InitialPatientDetails_Age,0,1) === '8' ? 'an':'a' ); 
     ?> <?php echo $objReview->InitialPatientDetails_Age; 
-	?> year old <?php echo ($objReview->InitialPatientDetails_Sex === 'M'? 'man':'woman'); 
+	?> year old <?php echo ($objReview->InitialPatientDetails_Sex === 'M'? 'man':'woman');
 	?> <?php 		
 		
 		if  ($objReview->FirstAssessment_SymptomDuration === "Since Childhood") { 
@@ -31,8 +31,33 @@
 	
 		if ($CurrentMedicationLevel === '0') { 
 			echo "has been on no asthma treatment.";
-		} else { 						
-			echo "has been taking treatment equivalent to <b>Step ".$CurrentMedicationLevel."</b> of the BTS / SIGN Asthma Guidelines."; 
+		} else {
+            //TODO: For Step Title
+            $StepTitle = "";
+            switch ($CurrentMedication_CurrentMedicationLevel) {
+                case "1":
+                    $StepTitle = "As Required Reliever Therapy";
+                    break;
+                case "2":
+                    $StepTitle = "Regular Preventer Therapy";
+                    break;
+                case "3":
+                    $StepTitle = "Initial Addon-Therapy";
+                    break;
+                case "4":
+                    $StepTitle = "Additional Controller Therapies";
+                    break;
+                case "5":
+                case "6":
+                    $StepTitle = "Specialist Therapies";
+                    break;
+                default:
+                    $StepTitle = "Unknown Step";
+                    break;
+            }
+
+
+            echo "has been taking treatment equivalent to <b> ".$StepTitle."</b> of the BTS / SIGN Asthma Guidelines.";
 		}
 
 	echo " This is " . ($objReview->InitialPatientDetails_Sex === 'M'? 'his ':'her ');

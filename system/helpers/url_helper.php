@@ -535,13 +535,19 @@ if ( ! function_exists('redirect'))
 			$uri = site_url($uri);
 		}
 
-		switch($method)
-		{
-			case 'refresh'	: header("Refresh:0;url=".$uri);
-				break;
-			default			: header("Location: ".$uri, TRUE, $http_response_code);
-				break;
-		}
+        if (headers_sent()) {
+            //die("Redirect failed. Please click on this link: <a href=...>");
+            echo '<script>window.location.href = ""'.$uri.'";</script>';
+        }
+        else{
+            switch($method)
+            {
+                case 'refresh'	: header("Refresh:0;url=".$uri);
+                	break;
+                default			: header("Location: ".$uri, TRUE, $http_response_code);
+                    break;
+            }
+        }
 		exit;
 	}
 }
