@@ -1424,6 +1424,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                                     //echo "<h1>42</h1>";
 							        return $MedicationLevel = "4";
                                 }
+                                return $MedicationLevel = "4";
                             }
                             // Low dose ICS
                             else {
@@ -1434,9 +1435,8 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                                             //echo "<h1>43</h1>";
                                             return $MedicationLevel = "4";
                                         }
-
-                                        return $MedicationLevel = "3";
                                     }
+                                    return $MedicationLevel = "3";
                                 }
 
                                 return $MedicationLevel = "2";
