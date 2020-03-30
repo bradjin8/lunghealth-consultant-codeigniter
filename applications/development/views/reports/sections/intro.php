@@ -48,6 +48,8 @@
                     $StepTitle = "Additional Controller Therapies";
                     break;
                 case "5":
+                    $StepTitle = "Specialist Therapies";
+                    break;
                 case "6":
                     $StepTitle = "Specialist Therapies";
                     break;

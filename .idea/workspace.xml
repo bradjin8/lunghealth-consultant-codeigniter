@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/applications/development/views/reports/sections/intro.php" beforeDir="false" afterPath="$PROJECT_DIR$/applications/development/views/reports/sections/intro.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowalgorithms/algorithms.php" beforeDir="false" afterPath="$PROJECT_DIR$/flowalgorithms/algorithms.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/helpers/url_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/helpers/url_helper.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,19 +19,19 @@
     <session id="734293728">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="3" />
           <entry key="JavaScript" value="6" />
-          <entry key="PHP" value="86" />
+          <entry key="PHP" value="93" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="7" />
           <entry key="htaccess" value="1" />
@@ -42,7 +41,7 @@
         <counts>
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="16265" />
+          <entry key="PHP" value="16680" />
           <entry key="PLAIN_TEXT" value="107" />
         </counts>
       </usages-collector>
@@ -53,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="882" selection-start-line="882" selection-end-line="882" />
+            <state relative-caret-position="196">
+              <caret line="857" selection-start-line="857" selection-end-line="857" />
             </state>
           </provider>
         </entry>
@@ -62,52 +61,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="3306" selection-start-line="3279" selection-end-line="3306" />
+            <state relative-caret-position="187">
+              <caret line="1185" selection-start-line="1185" selection-end-line="1185" />
+              <folding>
+                <element signature="e#80987#83574#0#PHP" />
+                <element signature="e#81116#83442#0#PHP" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="15" column="61" lean-forward="true" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/development/models/apiconsultation_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1245" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="59" column="74" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deployment_20170117.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="75" column="699222" selection-start-line="75" selection-start-column="699222" selection-end-line="75" selection-end-column="699222" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="539" column="61" selection-start-line="539" selection-start-column="61" selection-end-line="539" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/development/controllers/begin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="101" column="29" lean-forward="true" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
+            <state relative-caret-position="201">
+              <caret line="103" selection-start-line="103" selection-end-line="103" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
+            <state relative-caret-position="2385">
               <caret line="159" selection-start-line="159" selection-end-line="159" />
             </state>
           </provider>
@@ -116,7 +122,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/system/core/CodeIgniter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
+            <state relative-caret-position="5940">
               <caret line="396" selection-start-line="396" selection-end-line="396" />
             </state>
           </provider>
@@ -135,9 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>= &quot;D&quot;</find>
-      <find>Step 2</find>
-      <find>on Step C treatment.</find>
       <find>on Step C therapy</find>
       <find>Step 4;</find>
       <find>Step 5;</find>
@@ -146,7 +149,6 @@
       <find>algorithms.php</find>
       <find>FlowAlgorithmsLibrary</find>
       <find>$application_folder</find>
-      <find>fn_Therapy</find>
       <find>return $TherapyStream =</find>
       <find>CurrentMe</find>
       <find>alert-info</find>
@@ -160,11 +162,15 @@
       <find>¶</find>
       <find>&quot;therapy</find>
       <find>therapy</find>
-      <find>year old</find>
       <find>SummarySoFar</find>
       <find>smoker on</find>
       <find>treatment eq</find>
       <find>Step&quot;</find>
+      <find>fn_Therapy</find>
+      <find>year old</find>
+      <find>year old</find>
+      <find>male</find>
+      <find>fn_CurrentMedicationLevelStep</find>
     </findStrings>
     <replaceStrings>
       <replace>This person</replace>
@@ -204,8 +210,8 @@
         <option value="$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/applications/development/libraries/FlowAlgorithmsLibrary.php" />
-        <option value="$PROJECT_DIR$/flowalgorithms/algorithms.php" />
         <option value="$PROJECT_DIR$/system/helpers/url_helper.php" />
+        <option value="$PROJECT_DIR$/flowalgorithms/algorithms.php" />
         <option value="$PROJECT_DIR$/applications/development/views/reports/sections/intro.php" />
       </list>
     </option>
@@ -222,11 +228,11 @@
     </servers>
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost:80" />
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="15" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1920" />
     <option name="y" value="23" />
-    <option name="width" value="975" />
-    <option name="height" value="1015" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,7 +270,15 @@
               <item name="lung" type="462c0819:PsiDirectoryNode" />
               <item name="applications" type="462c0819:PsiDirectoryNode" />
               <item name="development" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="lastconsultationreview" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lung" type="b2602c69:ProjectViewProjectNode" />
@@ -284,7 +298,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="helper&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/system/helpers/url_helper.php" />
+    <property name="SearchEverywhereHistoryKey" value="last&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/views/lastconsultationreview&#10;helper&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/system/helpers/url_helper.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -319,12 +333,13 @@
       <workItem from="1584261418909" duration="20434000" />
       <workItem from="1584544694774" duration="47628000" />
       <workItem from="1584961812169" duration="1785000" />
-      <workItem from="1585051457613" duration="3573000" />
+      <workItem from="1585051457613" duration="4724000" />
+      <workItem from="1585540408162" duration="10136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73420000" />
+    <option name="totallyTimeSpent" value="84707000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -336,23 +351,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="1920" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973913" weight="0.1826411" />
-      <window_info id="Structure" order="1" sideWeight="0.5026087" side_tool="true" visible="true" weight="0.090521835" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49517685" visible="true" weight="0.1826411" />
+      <window_info id="Structure" order="1" sideWeight="0.50482315" side_tool="true" weight="0.1826411" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3100304" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.30997878" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.36068895" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.36068895" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3242148" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.34261242" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -371,17 +386,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>1580</line>
+          <line>1699</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>2262</line>
+          <line>2382</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>2210</line>
+          <line>2330</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -396,7 +411,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>1378</line>
+          <line>1496</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -411,7 +426,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>3147</line>
+          <line>3267</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -429,24 +444,20 @@
           <line>878</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/flowalgorithms/algorithms 20160507.php</url>
+          <line>1091</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
+          <line>1387</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/applications/development/views/welcome_message.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="989">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/core/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="255" column="21" selection-start-line="255" selection-start-column="21" selection-end-line="255" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/system/core/Common.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -586,9 +597,6 @@
     <entry file="file://$PROJECT_DIR$/applications/development/models/screen_model.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/models/apiconsultation_model.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/controllers/download.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1320">
@@ -626,13 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/models/patient_model.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -650,41 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/core/CodeIgniter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="396" selection-start-line="396" selection-end-line="396" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowAlgorithmsLibrary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="48" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="159" selection-start-line="159" selection-end-line="159" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="882" selection-start-line="882" selection-end-line="882" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/begin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="101" column="29" lean-forward="true" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deployment_20170117.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -699,24 +665,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms.php">
+    <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="3306" selection-start-line="3279" selection-end-line="3306" />
+        <state relative-caret-position="8085">
+          <caret line="539" column="61" selection-start-line="539" selection-start-column="61" selection-end-line="539" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
+    <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="539" column="61" selection-start-line="539" selection-start-column="61" selection-end-line="539" selection-end-column="61" />
+        <state relative-caret-position="2385">
+          <caret line="159" selection-start-line="159" selection-end-line="159" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/core/CodeIgniter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5940">
+          <caret line="396" selection-start-line="396" selection-end-line="396" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/models/apiconsultation_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1245" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20160507.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="1061" column="47" lean-forward="true" selection-start-line="1061" selection-start-column="47" selection-end-line="1061" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowAlgorithmsLibrary.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="48" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="857" selection-start-line="857" selection-end-line="857" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="59" column="74" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
+        <state relative-caret-position="156">
+          <caret line="15" column="61" lean-forward="true" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1185" selection-start-line="1185" selection-end-line="1185" />
+          <folding>
+            <element signature="e#80987#83574#0#PHP" />
+            <element signature="e#81116#83442#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/controllers/begin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
         </state>
       </provider>
     </entry>

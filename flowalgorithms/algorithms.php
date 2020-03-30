@@ -1369,16 +1369,135 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         // step A , 1: As required reliever therapy
         // step B , 2: Regular preventer therapy
         // step C , 3: Initial "add on therapy"
-        // step D , 4: Additional Controller therapies
+        // step D , 4: Additional Controller therapies  // Previously
         // step E1, 5: Specialist therapies            // A patient who is using nebulised therapies enters this step
         // step E2, 6: Hospital Specialist therapies   // A patient who is using nebulised therapies enters this step
 //        echo json_encode($CurrentICS);
 //	    die();
+        $totalSteroidDose = 0;
+
+        if(is_numeric($BdpIcs)){
+            $totalSteroidDose = $totalSteroidDose + $BdpIcs;
+        }
+
+        if(is_numeric($BdpCombo)){
+            $totalSteroidDose = $totalSteroidDose + $BdpCombo;
+        }
+
+
+        if ($CurrentOralSteroids != NULL && $HowLongOralSteroids != "<4weeks") {
+            return $MedicationLevel = "6";
+        }
+        else {
+			//If Nebulised SABA, Nebulised SAA, Nebulised ICS, or Injectable Steroid then Step 4
+			if ($CurrentNebSABA != NULL || $CurrentNebSAA != NULL || $CurrentNebICS  != NULL || $CurrentDrugLongActingInjectableSteroids  != NULL) {
+				 return $MedicationLevel = "5";
+				 //echo "<h1>51</h1>";
+			}
+
+			else {
+				//Check if on ICS or Combo
+				if ($CurrentICS != NULL || $CurrentComb != NULL){
+					//If ICS AND Combo together, OR Combo with any of ILABA, LTRA, Theophylline,ILAA, or LABA/LAMA then Step 4
+					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL & ($CurrentILABA != NULL || $CurrentLTRA != NULL || $CurrentTheophylline != NULL || $CurrentILAA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
+						//echo "<h1>52</h1>";
+						return $MedicationLevel = "5";
+					}
+					else {
+						//If Combo with SMART dosing then Step C
+						if($CurrentComb != NULL && $BdpCombo == "SMART"){
+						    /*if ($CurrentLTRA != NULL) {
+                                //echo "<h1>41</h1>";
+						        return $MedicationLevel = "4";
+                            }*/
+							return $MedicationLevel = "3";
+						}
+						else {
+						    // High dose ICS
+							if ($totalSteroidDose > 800){
+								return $MedicationLevel = "5";
+								//echo "<h1>53</h1>";
+							}
+							// Medium dose ICS
+                            elseif ($totalSteroidDose > 400) {
+							    if ($CurrentILABA != NULL || $CurrentLTRA != NULL) {
+                                    //echo "<h1>42</h1>";
+							        return $MedicationLevel = "4";
+                                }
+                            }
+                            // Low dose ICS
+                            else {
+                                if ($CurrentILABA != NULL){
+                                    if ($BdpCombo == "SMART") {
+
+                                        if ($CurrentLTRA != NULL) {
+                                            //echo "<h1>43</h1>";
+                                            return $MedicationLevel = "4";
+                                        }
+
+                                        return $MedicationLevel = "3";
+                                    }
+                                }
+
+                                return $MedicationLevel = "2";
+                            }
+
+							/*else {
+
+								$noOthers = 0;
+								//if ($totalSteroidDose > 400) {$noOthers = $noOthers+1;}
+								if ($totalSteroidDose > 400 && $CurrentICS != NULL) {$noOthers = $noOthers+1;} //Probably this
+								if ($CurrentComb != NULL) {$noOthers = $noOthers+1;}
+								if ($CurrentILABA != NULL) {$noOthers = $noOthers+1;}
+								if ($CurrentLTRA != NULL) {$noOthers = $noOthers+1;}
+								if ($CurrentTheophylline != NULL) {$noOthers = $noOthers+1;}
+								if ($CurrentILAA != NULL) {$noOthers = $noOthers+1;}
+								if ($CurrentDrugLABALAMA != NULL) {$noOthers = $noOthers+2;}
+
+								//echo "<h1>NO OTHERS ".$noOthers."</h1>";
+
+								if($noOthers < 1){
+									return $MedicationLevel = "2";
+								}
+								elseif ($noOthers == 1) {
+									return $MedicationLevel = "3";
+								}
+								else {
+									//echo "<h1>44</h1>";
+									return $MedicationLevel = "5";
+								}
+
+							}*/
+						}
+
+					}
+
+
+				}
+				else {
+					//If LTRA, Cromone, or Theophylline then Step B
+					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
+						return $MedicationLevel = "2";
+					//If ISAMA, ISAA, or OBA then Step 1
+					}
+					elseif ($CurrentISABA  != NULL || $CurrentISAA != NULL || $CurrentOBA != NULL ){
+						return $MedicationLevel = "1";
+					}
+					else {
+					//Otherwise Step 0 - no recognised asthma therapy
+						return $MedicationLevel = "0";
+					}
+
+				}
+			}
+
+        }
 
         // Check if SABA
-        if ($CurrentISABA != NULL) {
+/*        if ($CurrentISABA != NULL) {
             return $MedicationLevel = "1";
-        } else {
+        }
+        else {
             // Check if ICS
             if ($CurrentICS != NULL) {
                 // Check if Low dose ICS
@@ -1424,7 +1543,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
             // Non-standard use of drugs LAMA, LABA, Theophyline, LRTA, alone
             return $MedicationLevel = "0";
-        }
+        }*/
 
 
         //If Oral Steroids >= 4 weeks then Step 5
@@ -1694,6 +1813,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 break;
             case "4":
                 $CurrentMedicationLevel = "D";
+                break;
             case "5":
                 $CurrentMedicationLevel = "E1";
                 break;
