@@ -1386,7 +1386,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
 
         if ($CurrentOralSteroids != NULL && $HowLongOralSteroids != "<4weeks") {
-            return $MedicationLevel = "6";
+            return $MedicationLevel = "5";
         }
         else {
 			//If Nebulised SABA, Nebulised SAA, Nebulised ICS, or Injectable Steroid then Step 4
@@ -1428,7 +1428,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                             }
                             // Low dose ICS
                             else {
-                                if ($CurrentILABA != NULL){
+                                if ($CurrentComb != NULL || ($CurrentILABA != NULL && $CurrentICS != NULL)){
                                     if ($BdpCombo == "SMART") {
 
                                         if ($CurrentLTRA != NULL) {
