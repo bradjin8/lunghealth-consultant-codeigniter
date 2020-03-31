@@ -1428,7 +1428,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                             }
                             // Low dose ICS
                             else {
-                                if ($CurrentComb != NULL || ($CurrentILABA != NULL && $CurrentICS != NULL)){
+                                if ($CurrentComb != NULL){
                                     if ($BdpCombo == "SMART") {
 
                                         if ($CurrentLTRA != NULL) {
@@ -1436,6 +1436,10 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                                             return $MedicationLevel = "4";
                                         }
                                     }
+                                    return $MedicationLevel = "3";
+                                }
+
+                                if (($CurrentILABA != NULL && $CurrentICS != NULL) || $CurrentDrugLABALAMA != NULL) {
                                     return $MedicationLevel = "3";
                                 }
 
