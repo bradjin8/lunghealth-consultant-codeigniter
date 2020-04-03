@@ -1343,8 +1343,8 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         $CurrentILABA = $arrInputs[4];
         $CurrentComb = $arrInputs[5];
         $CurrentILAA = $arrInputs[6];
-        $CurrentLTRA = $arrInputs[7];
-        $CurrentTheophylline = $arrInputs[8];
+        $CurrentLTRA = $arrInputs[7];           //Oral antieukotriene antagonists
+        $CurrentTheophylline = $arrInputs[8];   //Theopyline
         $CurrentPDE4Inhibitor = $arrInputs[9];
         $CurrentMucolytic = $arrInputs[10];
         $CurrentISAA = $arrInputs[11];
@@ -1385,21 +1385,21 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         }
 
 
+        // On OralSteroids(>4weeks) or (Omlizumab or Bendralizumab or Mepolizumab or Resilizumab), Step E2
         if ($CurrentOralSteroids != NULL && $HowLongOralSteroids != "<4weeks") {
-            return $MedicationLevel = "5";
+            return $MedicationLevel = "6";
         }
         else {
-			//If Nebulised SABA, Nebulised SAA, Nebulised ICS, or Injectable Steroid then Step 4
+			//If Nebulised SABA, Nebulised SAA, Nebulised ICS, or Injectable Steroid then Step E1
 			if ($CurrentNebSABA != NULL || $CurrentNebSAA != NULL || $CurrentNebICS  != NULL || $CurrentDrugLongActingInjectableSteroids  != NULL) {
 				 return $MedicationLevel = "5";
 				 //echo "<h1>51</h1>";
 			}
-
 			else {
 				//Check if on ICS or Combo
 				if ($CurrentICS != NULL || $CurrentComb != NULL){
-					//If ICS AND Combo together, OR Combo with any of ILABA, LTRA, Theophylline,ILAA, or LABA/LAMA then Step 4
-					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL & ($CurrentILABA != NULL || $CurrentLTRA != NULL || $CurrentTheophylline != NULL || $CurrentILAA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
+					//If ICS AND Combo together, OR Combo with any of ILABA, Theophylline, LAMA, or LABA/LAMA then Step E1, TODO: LAMA = LAA?
+					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL && ($CurrentILABA != NULL || $CurrentTheophylline != NULL || $CurrentILAA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
 						//echo "<h1>52</h1>";
 						return $MedicationLevel = "5";
 					}
@@ -1413,65 +1413,32 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 							return $MedicationLevel = "3";
 						}
 						else {
-						    // High dose ICS
+						    // Total ICS dose > 800, then Step E1
 							if ($totalSteroidDose > 800){
 								return $MedicationLevel = "5";
 								//echo "<h1>53</h1>";
 							}
-							// Medium dose ICS
-                            elseif ($totalSteroidDose > 400) {
-							    if ($CurrentILABA != NULL || $CurrentLTRA != NULL) {
-                                    //echo "<h1>42</h1>";
-							        return $MedicationLevel = "4";
-                                }
-                                return $MedicationLevel = "4";
-                            }
-                            // Low dose ICS
                             else {
-                                if ($CurrentComb != NULL){
-                                    if ($BdpCombo == "SMART") {
-
-                                        if ($CurrentLTRA != NULL) {
-                                            //echo "<h1>43</h1>";
-                                            return $MedicationLevel = "4";
+                                // (ICS >= 400) OR (ICS >=400 AND LABA or LTRA), Step D
+                                if ($totalSteroidDose > 400 || ($totalSteroidDose > 400 && ($CurrentILABA != NULL || $CurrentLTRA != NULL))) {
+                                    return $MedicationLevel = "4";
+                                }
+                                else {
+                                    // (ICS <= 400) AND LABA OR MART, then Step C
+                                    if ($CurrentILABA != NULL || $BdpCombo == "SMART") {
+                                        return $MedicationLevel = "3";
+                                    }
+                                    else {
+                                        // Any ICS Regular?, then Step B
+                                        if ($CurrentICS != NULL) {
+                                            return $MedicationLevel = "2";
+                                        }
+                                        else {
+                                            return $MedicationLevel = "1";
                                         }
                                     }
-                                    return $MedicationLevel = "3";
                                 }
-
-                                if (($CurrentILABA != NULL && $CurrentICS != NULL) || $CurrentDrugLABALAMA != NULL) {
-                                    return $MedicationLevel = "3";
-                                }
-
-                                return $MedicationLevel = "2";
                             }
-
-							/*else {
-
-								$noOthers = 0;
-								//if ($totalSteroidDose > 400) {$noOthers = $noOthers+1;}
-								if ($totalSteroidDose > 400 && $CurrentICS != NULL) {$noOthers = $noOthers+1;} //Probably this
-								if ($CurrentComb != NULL) {$noOthers = $noOthers+1;}
-								if ($CurrentILABA != NULL) {$noOthers = $noOthers+1;}
-								if ($CurrentLTRA != NULL) {$noOthers = $noOthers+1;}
-								if ($CurrentTheophylline != NULL) {$noOthers = $noOthers+1;}
-								if ($CurrentILAA != NULL) {$noOthers = $noOthers+1;}
-								if ($CurrentDrugLABALAMA != NULL) {$noOthers = $noOthers+2;}
-
-								//echo "<h1>NO OTHERS ".$noOthers."</h1>";
-
-								if($noOthers < 1){
-									return $MedicationLevel = "2";
-								}
-								elseif ($noOthers == 1) {
-									return $MedicationLevel = "3";
-								}
-								else {
-									//echo "<h1>44</h1>";
-									return $MedicationLevel = "5";
-								}
-
-							}*/
 						}
 
 					}
@@ -1482,7 +1449,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 					//If LTRA, Cromone, or Theophylline then Step B
 					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
 						return $MedicationLevel = "2";
-					//If ISAMA, ISAA, or OBA then Step 1
+					//If ISABA, ISAA, or OBA then Step 1,    //TODO: SABA tabs = OBA?
 					}
 					elseif ($CurrentISABA  != NULL || $CurrentISAA != NULL || $CurrentOBA != NULL ){
 						return $MedicationLevel = "1";
@@ -1497,57 +1464,6 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         }
 
-        // Check if SABA
-/*        if ($CurrentISABA != NULL) {
-            return $MedicationLevel = "1";
-        }
-        else {
-            // Check if ICS
-            if ($CurrentICS != NULL) {
-                // Check if Low dose ICS
-                if (intval($CurrentICS) < 400) {
-                    // If LABA + MART, then Step C
-                    if ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART") {
-                        return $MedicationLevel = "3";
-                    }
-
-                    // If low dose ICS, then Step B
-                    return $MedicationLevel = "2";
-                } // If medium does ICS
-                else if (intval($CurrentICS) < 800) {
-                    // If medium does ICS + (LABA, LABA + LRTA, or LRTA) , then Step D
-                    if ($CurrentILABA != NULL || $CurrentLTRA != NULL) {
-                        return $MedicationLevel = "4";
-                    }
-                } else {
-                    // If high dose ICS + (, LAVA + MART, LAVA + MART + LRTA, LAVA + MART + LAMA, LATA + MART + Theophyline, LAMA/LABA,) , then Step E1
-                    if (
-                        ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART") ||
-                        ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART" && $CurrentLTRA) ||
-                        ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART" && $CurrentDrugLABALAMA != NULL) ||
-                        ($CurrentLTRA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART" && $CurrentTheophylline) ||
-                        ($CurrentDrugLABALAMA != NULL)
-                    ) {
-                        return $MedicationLevel = "5";
-                    }
-
-                    return $MedicationLevel = "5";
-                }
-
-                // If low dose ICS + LAVA fixed dose or MART + LRTA, then Step D
-                if ((intval($CurrentICS) < 400 && $CurrentILABA != NULL) || ($CurrentILABA != NULL && $CurrentComb != NULL && $BdpCombo == "SMART")) {
-                    return $MedicationLevel = "4";
-                }
-
-                // If NebSABA or NebSAA or NebICS or InjectableSteroid or OralSteroid
-                if ($CurrentNebSABA != NULL || $CurrentNebSAA != NULL || $CurrentNebICS != NULL || $CurrentDrugLongActingInjectableSteroids != NULL || $CurrentOralSteroids != NULL) {
-                    return $MedicationLevel = "5";
-                }
-            }
-
-            // Non-standard use of drugs LAMA, LABA, Theophyline, LRTA, alone
-            return $MedicationLevel = "0";
-        }*/
 
 
         //If Oral Steroids >= 4 weeks then Step 5
@@ -1804,7 +1720,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         }
 
 
-        // 03/18/2020        Step 0-5 => Step 0, A-E
+        // 03/18/2020        Step 0-6 => Step 0, A-E
         switch ($CurrentMedicationLevel) {
             case "1":
                 $CurrentMedicationLevel = "A";
@@ -3136,9 +3052,11 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         */
 
+
+
         //No Medication sub-section
         if ($CurrentMedicationLevel == 0 && $msgCode != "NS" && $msgCode != "STA") {
-            $msgText = "<p><b>This person has stopped the Step " . $MedicationLevelAtStartOfLastVisit . " treatment suggested last time because <i>" . $NoMedicationReason . ".</i> Please take extra care as you select your therapeutic plan for this person; it may need to be individualised rather than following guidelines rigidly.</b></p><hr>" . $msgText;
+            $msgText = "<p><b>This person has stopped the " . $this->_getStepTitle($MedicationLevelAtStartOfLastVisit) . " treatment suggested last time because <i>" . $NoMedicationReason . ".</i> Please take extra care as you select your therapeutic plan for this person; it may need to be individualised rather than following guidelines rigidly.</b></p><hr>" . $msgText;
             //LABA Alone
         } elseif ($CurrentMedicationLevel == 0 && $msgCode == "NS") {
             $msgText = "<p><b>This person was on a non-standard regime and the algorithm cannot be adjusted for this. Please take extra care as you select your therapeutic plan for this person.</b></p>";
@@ -3179,6 +3097,29 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         return $msgText;
 
     }
+
+    function _getStepTitle($stepNum) {
+        switch (intval($stepNum)) {
+            case 0:
+                return 'no current';
+            case 1:
+                return 'As Required Reliever Therapy';
+            case 2:
+                return 'Regular Preventer Therapy';
+            case 3:
+                return 'Initial Addon Therapy';
+            case 4:
+                return 'Additional Controller Therapies';
+            case 5:
+                return 'Specialist Therapies';
+            case 6:
+                return 'Specialist Therapies';
+            default:
+                return 'no current';
+
+        }
+    }
+
 
     //fn_TherapyInhalerTechnique("NonPharmaRx,ChangeDevice","NonPharmaRx,Other","NonPharmaRx,Details","NonPharmaRx,AddSpacer") - FieldID: 2807
     /*function fn_TherapyInhalerTechnique($arrInputs = array()) {
@@ -3420,15 +3361,17 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 $StepTitle = "Additional Controller Therapies";
                 break;
             case "5":
-            case "6":
                 $StepTitle = "Specialist Therapies";
+                break;
+            case "6":
+                $StepTitle = "Hospital Specialist Therapies";
                 break;
             default:
                 $StepTitle = "Unknown Step";
                 break;
         }
 
-        $messageHTML = $messageHTML . "<p>The patient is on treatment <b> " . $StepTitle . "</b> (2014 BTS/SIGN Asthma Guidelines), and their overall control has been assessed as <b>" . strtolower($UsedControl) . "</b>. Their control is based on the following:</p>";
+        $messageHTML = $messageHTML . "<p>The patient is on treatment <b> " . $StepTitle . "</b> (2019 BTS/SIGN Asthma Guidelines), and their overall control has been assessed as <b>" . strtolower($UsedControl) . "</b>. Their control is based on the following:</p>";
 
         /// Start of table
         $messageHTML = $messageHTML . "<table class=\"control_table\">";

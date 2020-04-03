@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="302b02c6-26a8-4d63-8807-27e35888d80d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/development/controllers/flowcontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/applications/development/controllers/flowcontroller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/development/views/reports/sections/exit-summary_20160427.php" beforeDir="false" afterPath="$PROJECT_DIR$/applications/development/views/reports/sections/exit-summary_20160427.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/development/views/reports/sections/intro.php" beforeDir="false" afterPath="$PROJECT_DIR$/applications/development/views/reports/sections/intro.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowalgorithms/algorithms.php" beforeDir="false" afterPath="$PROJECT_DIR$/flowalgorithms/algorithms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/js/screens.js" beforeDir="false" afterPath="$PROJECT_DIR$/includes/js/screens.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,61 +22,44 @@
     <session id="734293728">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.5" value="3" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="3" />
-          <entry key="JavaScript" value="6" />
-          <entry key="PHP" value="93" />
+          <entry key="JavaScript" value="11" />
+          <entry key="PHP" value="130" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="SQL" value="7" />
+          <entry key="SQL" value="12" />
           <entry key="htaccess" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="2" />
-          <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="16808" />
+          <entry key="JavaScript" value="8" />
+          <entry key="PHP" value="17992" />
           <entry key="PLAIN_TEXT" value="107" />
+          <entry key="SQL" value="4" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="882" selection-start-line="882" selection-end-line="882" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="1441" column="117" selection-start-line="1441" selection-start-column="117" selection-end-line="1441" selection-end-column="117" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+            <state relative-caret-position="203">
+              <caret line="3366" column="39" selection-start-line="3366" selection-start-column="39" selection-end-line="3366" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -79,54 +67,76 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+            <state relative-caret-position="202">
+              <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/models/apiconsultation_model.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/controllers/begin.php">
+        <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="103" column="59" lean-forward="true" selection-start-line="103" selection-start-column="59" selection-end-line="103" selection-end-column="59" />
+            <state relative-caret-position="158">
+              <caret line="205" selection-start-line="205" selection-end-line="205" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/includes/js/drug-editor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="e#25#31#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2385">
-              <caret line="159" selection-start-line="159" selection-end-line="159" />
+            <state relative-caret-position="186">
+              <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/core/CodeIgniter.php">
+        <entry file="file://$PROJECT_DIR$/includes/js/drug-other-editor.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/js/drug-list.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/js/screens.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5940">
-              <caret line="396" selection-start-line="396" selection-end-line="396" />
+            <state relative-caret-position="146">
+              <caret line="537" selection-start-line="537" selection-end-line="537" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowAlgorithmsLibrary.php">
+        <entry file="file://$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="48" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="48" />
+            <state relative-caret-position="95">
+              <caret line="965" selection-start-line="965" selection-end-line="965" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20160507.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13">
+              <caret line="381" column="314" selection-start-line="381" selection-start-column="314" selection-end-line="381" selection-end-column="314" />
             </state>
           </provider>
         </entry>
@@ -135,35 +145,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>on Step C therapy</find>
-      <find>Step 4;</find>
-      <find>Step 5;</find>
-      <find>Step E1/E2</find>
-      <find>Step D;</find>
-      <find>algorithms.php</find>
-      <find>FlowAlgorithmsLibrary</find>
-      <find>$application_folder</find>
-      <find>return $TherapyStream =</find>
-      <find>CurrentMe</find>
-      <find>alert-info</find>
-      <find>This patient is a</find>
-      <find>fn_summ</find>
-      <find>fn_summary</find>
-      <find>fn_Thera</find>
-      <find>$CurrentMedication_CurrentMedicationLevel</find>
-      <find>Current</find>
-      <find>fn_Cur</find>
-      <find>¶</find>
-      <find>&quot;therapy</find>
-      <find>therapy</find>
       <find>SummarySoFar</find>
-      <find>smoker on</find>
-      <find>treatment eq</find>
-      <find>Step&quot;</find>
-      <find>fn_Therapy</find>
       <find>year old</find>
-      <find>male</find>
-      <find>fn_CurrentMedicationLevelStep</find>
+      <find>This pa</find>
+      <find>Summary So Far</find>
+      <find>2014 BTS/SIGN Asthma Guidelines</find>
+      <find>Today's</find>
+      <find>This patient is a</find>
+      <find>on &lt;b&gt;</find>
+      <find>on Step</find>
+      <find>on &lt;b&gt;Step 4</find>
+      <find>LFR</find>
+      <find>FIRST RUN</find>
+      <find>de</find>
+      <find>StepNumber =</find>
+      <find>var obj_agc</find>
+      <find>$strJSCalculations</find>
+      <find>Date.now()</find>
+      <find>Step up to</find>
+      <find>by adding one of</find>
+      <find>Step up to Step 4 therapy</find>
+      <find>oralsteroid</find>
+      <find>2014 BTS/Sign</find>
+      <find>BTS/SIGN</find>
+      <find>CurrentD</find>
+      <find>CurrentDrugISABA</find>
+      <find>CurrentMedication_CurrentDrugISABADrugDropDownInsert</find>
+      <find>updateOther</find>
+      <find>$StepTitle</find>
+      <find>CurrentMedicationLevelStep</find>
+      <find>case &quot;6&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>This person</replace>
@@ -177,6 +188,8 @@
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/applications/development</dir>
+      <dir>$PROJECT_DIR$/applications/development/views/reports/sections</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -198,12 +211,14 @@
         <option value="$PROJECT_DIR$/applications/development/models/previousconsultationvalues_model.php" />
         <option value="$PROJECT_DIR$/applications/development/controllers/welcome.php" />
         <option value="$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php" />
-        <option value="$PROJECT_DIR$/includes/js/screens.js" />
-        <option value="$PROJECT_DIR$/applications/development/controllers/flowcontroller.php" />
         <option value="$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/applications/development/libraries/FlowAlgorithmsLibrary.php" />
         <option value="$PROJECT_DIR$/system/helpers/url_helper.php" />
+        <option value="$PROJECT_DIR$/Deployment_20170117.sql" />
+        <option value="$PROJECT_DIR$/applications/development/views/reports/sections/exit-summary_20160427.php" />
+        <option value="$PROJECT_DIR$/includes/js/screens.js" />
+        <option value="$PROJECT_DIR$/applications/development/controllers/flowcontroller.php" />
         <option value="$PROJECT_DIR$/applications/development/views/reports/sections/intro.php" />
         <option value="$PROJECT_DIR$/flowalgorithms/algorithms.php" />
       </list>
@@ -222,10 +237,10 @@
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost:80" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1979" />
+    <option name="x" value="48" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
-    <option name="height" value="1013" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -233,7 +248,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,7 +271,7 @@
               <item name="lung" type="462c0819:PsiDirectoryNode" />
               <item name="applications" type="462c0819:PsiDirectoryNode" />
               <item name="development" type="462c0819:PsiDirectoryNode" />
-              <item name="libraries" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lung" type="b2602c69:ProjectViewProjectNode" />
@@ -272,7 +286,39 @@
               <item name="applications" type="462c0819:PsiDirectoryNode" />
               <item name="development" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="lastconsultationreview" type="462c0819:PsiDirectoryNode" />
+              <item name="begin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="finish" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="flowcontroller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="reports" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lung" type="b2602c69:ProjectViewProjectNode" />
@@ -283,10 +329,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="last&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/views/lastconsultationreview&#10;helper&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/system/helpers/url_helper.php" />
+    <property name="Constants" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="drug&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/includes/js/drug-editor.js&#10;last&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/views/lastconsultationreview&#10;helper&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/system/helpers/url_helper.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -324,12 +372,15 @@
       <workItem from="1585051457613" duration="4724000" />
       <workItem from="1585540408162" duration="11430000" />
       <workItem from="1585590923125" duration="199000" />
-      <workItem from="1585623992354" duration="8499000" />
+      <workItem from="1585623992354" duration="17621000" />
+      <workItem from="1585768195711" duration="658000" />
+      <workItem from="1585815768685" duration="1063000" />
+      <workItem from="1585927373799" duration="5678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94699000" />
+    <option name="totallyTimeSpent" value="111220000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -341,23 +392,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1979" y="23" width="1920" height="1013" extended-state="0" />
+    <frame x="48" y="23" width="1920" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49517685" visible="true" weight="0.185836" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49517685" visible="true" weight="0.19062833" />
       <window_info id="Structure" order="1" sideWeight="0.50482315" side_tool="true" weight="0.1826411" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.37861916" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3046709" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.36068895" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.34075725" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.34075725" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -376,33 +427,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>1703</line>
+          <line>1619</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>2386</line>
+          <line>2302</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>2334</line>
+          <line>2250</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
           <line>1185</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/applications/development/controllers/begin.php</url>
-          <line>103</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>1500</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
@@ -416,7 +457,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>3271</line>
+          <line>3212</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -441,151 +482,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
-          <line>1387</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/flowalgorithms/algorithms.php</url>
           <line>1376</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php</url>
+          <line>90</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/system/core/Common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/core/Router.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/begin 20160507.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/finish.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1312">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/information.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/otherdrugscontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/questiongrouppage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/test_pdf.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/template.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/config/api.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/models/previousconsultationvalues_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/welcome.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/questiongrouppage/view.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20170113.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20160520.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1634" column="13" selection-start-line="1634" selection-start-column="13" selection-end-line="1634" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/js/drug-other-editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="103" column="84" selection-start-line="103" selection-start-column="84" selection-end-line="103" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/begin/welcome.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2616" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/begin/consultation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="14" column="135" lean-forward="true" selection-start-line="14" selection-start-column="135" selection-end-line="14" selection-end-column="135" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="1239" column="26" selection-start-line="1239" selection-start-column="26" selection-end-line="1239" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/helpers/layout_helper.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -601,20 +509,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/libraries/document.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/js/screens.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="997" column="54" selection-start-line="997" selection-start-column="54" selection-end-line="997" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/js/drug-editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/models/therapy-review.php">
       <provider selected="true" editor-type-id="text-editor" />
@@ -646,13 +540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deployment_20170117.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="75" column="699222" selection-start-line="75" selection-start-column="699222" selection-end-line="75" selection-end-column="699222" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_4.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -667,46 +554,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20160507.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="1061" column="47" lean-forward="true" selection-start-line="1061" selection-start-column="47" selection-end-line="1061" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/models/apiconsultation_model.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2385">
-          <caret line="159" selection-start-line="159" selection-end-line="159" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/core/CodeIgniter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5940">
-          <caret line="396" selection-start-line="396" selection-end-line="396" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowAlgorithmsLibrary.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -715,24 +567,213 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro_20160426.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="882" selection-start-line="882" selection-end-line="882" />
+        <state relative-caret-position="212">
+          <caret line="43" column="94" lean-forward="true" selection-start-line="43" selection-start-column="94" selection-end-line="43" selection-end-column="94" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/controllers/begin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="103" column="59" lean-forward="true" selection-start-line="103" selection-start-column="59" selection-end-line="103" selection-end-column="59" />
+        <state relative-caret-position="414">
+          <caret line="104" column="63" lean-forward="true" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20160517.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4143">
+          <caret line="271" column="18" selection-start-line="271" selection-start-column="18" selection-end-line="271" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/diagnosis.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2534">
+          <caret line="169" column="34" selection-start-line="169" selection-start-column="34" selection-end-line="169" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/therapy-review.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-705" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/personal-features.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/diagnosis_030516.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/diagnosis 20160511.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/control.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3269" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/consent.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/concordance.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/clinical-exam.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="70" column="4" lean-forward="true" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/aggravating_factors.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/follow_up.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/first_assessment.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/summary.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/exit-summary.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="131" column="30" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/exit-summary_20160427.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/begin/welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-684" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/core/Hooks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/core/CodeIgniter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="396" selection-start-line="396" selection-end-line="396" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/phpmyadmin.css.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/js/whitelist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bin/phpMyAdmin/js/messages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deployment_20170117.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="75" column="12932" selection-start-line="75" selection-start-column="12932" selection-end-line="75" selection-end-column="12932" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms 20160507.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="381" column="314" selection-start-line="381" selection-start-column="314" selection-end-line="381" selection-end-column="314" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/js/drug-other-editor.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/js/drug-list.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/js/screens.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="537" selection-start-line="537" selection-end-line="537" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/js/drug-editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#25#31#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="965" selection-start-line="965" selection-end-line="965" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/libraries/FlowLibrary.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="205" selection-start-line="205" selection-end-line="205" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/intro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flowalgorithms/algorithms.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="1441" column="117" selection-start-line="1441" selection-start-column="117" selection-end-line="1441" selection-end-column="117" />
+        <state relative-caret-position="203">
+          <caret line="3366" column="39" selection-start-line="3366" selection-start-column="39" selection-end-line="3366" selection-end-column="39" />
         </state>
       </provider>
     </entry>

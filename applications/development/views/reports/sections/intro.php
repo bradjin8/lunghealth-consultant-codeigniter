@@ -51,7 +51,7 @@
                     $StepTitle = "Specialist Therapies";
                     break;
                 case "6":
-                    $StepTitle = "Specialist Therapies";
+                    $StepTitle = "Hospital Specialist Therapies";
                     break;
                 default:
                     $StepTitle = "Unknown Step";
@@ -59,7 +59,7 @@
             }
 
 
-            echo "has been taking treatment equivalent to <b> ".$StepTitle."</b> of the BTS / SIGN Asthma Guidelines.";
+            echo "has been taking treatment equivalent to <b> ".$StepTitle."</b> (2019 BTS / SIGN Asthma Guidelines).";
 		}
 
 	echo " This is " . ($objReview->InitialPatientDetails_Sex === 'M'? 'his ':'her ');

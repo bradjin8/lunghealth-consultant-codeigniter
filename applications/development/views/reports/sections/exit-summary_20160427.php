@@ -125,7 +125,6 @@
 		
 		echo "<p>" . $genderSubjectivePronounUpper . " was on high levels of therapy last time and now appears to be on none. This situation is most unusual and beyond the computerised guidance algorithm. " . $genderSubjectivePronounUpper . " has been withdrawn from the computerised guidance package but " . $genderPossessivePronounLower . " data has been saved should it be appropriate to resume standard asthma therapy in future</p>";
 	
-	}
 	} else {
 		echo "<p>" . $genderSubjectivePronounUpper . " has been withdrawn from the computerised guidance package but " . $genderPossessivePronounLower . " data has been saved should it be appropriate to resume standard asthma therapy in future.</p>";
 	}
