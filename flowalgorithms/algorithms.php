@@ -1342,7 +1342,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         $CurrentICS = $arrInputs[3];
         $CurrentILABA = $arrInputs[4];
         $CurrentComb = $arrInputs[5];
-        $CurrentILAA = $arrInputs[6];
+        $CurrentILAMA = $arrInputs[6];
         $CurrentLTRA = $arrInputs[7];           //Oral antieukotriene antagonists
         $CurrentTheophylline = $arrInputs[8];   //Theopyline
         $CurrentPDE4Inhibitor = $arrInputs[9];
@@ -1372,8 +1372,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         // step D , 4: Additional Controller therapies  // Previously
         // step E1, 5: Specialist therapies            // A patient who is using nebulised therapies enters this step
         // step E2, 6: Hospital Specialist therapies   // A patient who is using nebulised therapies enters this step
-//        echo json_encode($CurrentICS);
-//	    die();
+
         $totalSteroidDose = 0;
 
         if(is_numeric($BdpIcs)){
@@ -1384,32 +1383,42 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             $totalSteroidDose = $totalSteroidDose + $BdpCombo;
         }
 
+        // check onMART, 04/17/2020
+        // MART means
+        //      Name                                                                                    BDP     Step    Input
+        //      DouResp Spiromax 160/4.5mcg (budesonide and formoterol fumarate)                        400     C       Combination therapy(ICS + LABA), $CurrentComb
+        //      Forstair (Beclomethasone and Formeterol Extrafine Metered Dose InhalerMDI) 100/6mcg     500
+        //      Symbicort (Budesonide and Formeterol Turbohaler) 100/6mcg strength                      400
+        //      Symbicort (Budesonide and Formeterol Turbohaler) 200/6mcg strength                      400
+        //      Fobumix (Budesonide and Formeterol Easyhaler)    80/4.5mcg strength
+        //      Fobumix (Budesonide and Formeterol Easyhaler)   160/4.5mcg strength
+        $OnMART = false;
+        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 400) {
+            $OnMART = true;
+        }
+
 
         // On OralSteroids(>4weeks) or (Omlizumab or Bendralizumab or Mepolizumab or Resilizumab), Step E2
         if ($CurrentOralSteroids != NULL && $HowLongOralSteroids != "<4weeks") {
             return $MedicationLevel = "6";
         }
         else {
-			//If Nebulised SABA, Nebulised SAA, Nebulised ICS, or Injectable Steroid then Step E1
+			//If Nebulised SABA, Nebulised SAA, Nebulised ICS, or Injectable Steroid? YES: Step E1
 			if ($CurrentNebSABA != NULL || $CurrentNebSAA != NULL || $CurrentNebICS  != NULL || $CurrentDrugLongActingInjectableSteroids  != NULL) {
 				 return $MedicationLevel = "5";
 				 //echo "<h1>51</h1>";
 			}
 			else {
-				//Check if on ICS or Combo
+				//Check if on ICS or ICS/LABA Combo
 				if ($CurrentICS != NULL || $CurrentComb != NULL){
-					//If ICS AND Combo together, OR Combo with any of ILABA, Theophylline, LAMA, or LABA/LAMA then Step E1, TODO: LAMA = LAA?
-					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL && ($CurrentILABA != NULL || $CurrentTheophylline != NULL || $CurrentILAA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
+					//If ICS AND Combo together, OR Combo with any of (ILABA, Theophylline, LAMA, or LABA/LAMA) then Step E1
+					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL && ($CurrentILABA != NULL || $CurrentTheophylline != NULL || $CurrentILAMA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
 						//echo "<h1>52</h1>";
 						return $MedicationLevel = "5";
 					}
 					else {
-						//If Combo with SMART dosing then Step C
-						if($CurrentComb != NULL && $BdpCombo == "SMART"){
-						    /*if ($CurrentLTRA != NULL) {
-                                //echo "<h1>41</h1>";
-						        return $MedicationLevel = "4";
-                            }*/
+						//On MART, Step C
+						if($OnMART == true){
 							return $MedicationLevel = "3";
 						}
 						else {
@@ -1425,7 +1434,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                                 }
                                 else {
                                     // (ICS <= 400) AND LABA OR MART, then Step C
-                                    if ($CurrentILABA != NULL || $BdpCombo == "SMART") {
+                                    if ($CurrentILABA != NULL || $OnMART) {
                                         return $MedicationLevel = "3";
                                     }
                                     else {
@@ -1446,18 +1455,32 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
 				}
 				else {
-					//If LTRA, Cromone, or Theophylline then Step B
-					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
-						return $MedicationLevel = "2";
-					//If ISABA, ISAA, or OBA then Step 1,    //TODO: SABA tabs = OBA?
-					}
-					elseif ($CurrentISABA  != NULL || $CurrentISAA != NULL || $CurrentOBA != NULL ){
-						return $MedicationLevel = "1";
-					}
-					else {
-					//Otherwise Step 0 - no recognised asthma therapy
-						return $MedicationLevel = "0";
-					}
+				    // SABA Tablets, LTRA or Cromone Theraphyline alone + or - SABA, step 0
+                    if ($CurrentOBA != NULL || $CurrentLTRA != NULL || $CurrentCromone != NULL || $CurrentTheophylline != NULL) {
+                        return $MedicationLevel = "0";
+                    }
+                    else {
+                        // SABA as required, step A
+                        if ($CurrentISABA != NULL) {
+                            return $MedicationLevel = "1";
+                        }
+                        // TODO: where?
+                        else {
+                            return $MedicationLevel = "0";
+                        }
+                    }
+//					//If LTRA, Cromone, or Theophylline then Step B
+//					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAMA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
+//						return $MedicationLevel = "2";
+//					//If ISABA, ISAA, or OBA then Step 1,    //TODO: SABA tabs = OBA?
+//					}
+//					elseif ($CurrentISABA  != NULL || $CurrentISAA != NULL || $CurrentOBA != NULL ){
+//						return $MedicationLevel = "1";
+//					}
+//					else {
+//					//Otherwise Step 0 - no recognised asthma therapy
+//						return $MedicationLevel = "0";
+//					}
 
 				}
 			}
@@ -1478,7 +1501,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 //				//Check if on ICS or Combo
 //				if ($CurrentICS != NULL || $CurrentComb != NULL){
 //					//If ICS AND Combo together, OR Combo with any of ILABA, LTRA, Theophylline,ILAA, or LABA/LAMA then Step 4
-//					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL & ($CurrentILABA != NULL || $CurrentLTRA != NULL || $CurrentTheophylline != NULL || $CurrentILAA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
+//					if (($CurrentICS != NULL && $CurrentComb != NULL) || ( $CurrentComb != NULL & ($CurrentILABA != NULL || $CurrentLTRA != NULL || $CurrentTheophylline != NULL || $CurrentILAMA != NULL || $CurrentDrugLABALAMA != NULL) ) ){
 //						//echo "<h1>42</h1>";
 //						return $MedicationLevel = "4";
 //					} else {
@@ -1498,7 +1521,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 //								if ($CurrentILABA != NULL) {$noOthers = $noOthers+1;}
 //								if ($CurrentLTRA != NULL) {$noOthers = $noOthers+1;}
 //								if ($CurrentTheophylline != NULL) {$noOthers = $noOthers+1;}
-//								if ($CurrentILAA != NULL) {$noOthers = $noOthers+1;}
+//								if ($CurrentILAMA != NULL) {$noOthers = $noOthers+1;}
 //								if ($CurrentDrugLABALAMA != NULL) {$noOthers = $noOthers+2;}
 //
 //								//echo "<h1>NO OTHERS ".$noOthers."</h1>";
@@ -1520,7 +1543,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 //
 //				} else {
 //					//If LTRA, Cromone, or Theophylline then Step B
-//					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
+//					if($CurrentLTRA != NULL || $CurrentCromone !== NULL || $CurrentTheophylline != NULL  /*|| $CurrentILABA !== NULL|| $CurrentLTRA !== NULL|| $CurrentILAMA !== NULL || $CurrentDrugLABALAMA !== NULL*/){
 //						return $MedicationLevel = "2";
 //					//If ISAMA, ISAA, or OBA then Step 1
 //					} elseif ($CurrentISABA  != NULL || $CurrentISAA != NULL || $CurrentOBA != NULL ){
@@ -1546,13 +1569,13 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             } else {
                 if ($CurrentICS != NULL){
                     if ($BdpIcs <= 400){
-                        if ($CurrentILABA != NULL || $CurrentComb != NULL || $CurrentLTRA  != NULL || $CurrentTheophylline  != NULL || $CurrentILAA  != NULL)  {
+                        if ($CurrentILABA != NULL || $CurrentComb != NULL || $CurrentLTRA  != NULL || $CurrentTheophylline  != NULL || $CurrentILAMA  != NULL)  {
                              return $MedicationLevel = "3";
                         } else {
                              return $MedicationLevel = "2";
                         }
                     } elseif ($BdpIcs <= 1000) {
-                        if ($CurrentILABA != NULL || $CurrentComb != NULL || $CurrentLTRA  != NULL || $CurrentTheophylline  != NULL || $CurrentILAA  != NULL)  {
+                        if ($CurrentILABA != NULL || $CurrentComb != NULL || $CurrentLTRA  != NULL || $CurrentTheophylline  != NULL || $CurrentILAMA  != NULL)  {
                              return $MedicationLevel = "4";
                         } else {
                              return $MedicationLevel = "3";
@@ -1565,7 +1588,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
                 } else {
                     if ($CurrentComb != NULL){
-                        if ($CurrentLTRA != NULL || $CurrentILAA != NULL || $CurrentTheophylline != NULL){
+                        if ($CurrentLTRA != NULL || $CurrentILAMA != NULL || $CurrentTheophylline != NULL){
                              return $MedicationLevel = "4";
                         } else {
                              return $MedicationLevel = "3";
