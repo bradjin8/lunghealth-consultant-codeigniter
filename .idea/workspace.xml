@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="302b02c6-26a8-4d63-8807-27e35888d80d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database_20200417.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php" beforeDir="false" afterPath="$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,19 +48,20 @@
     <session id="945375612">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="1162" />
+          <entry key="PHP" value="1301" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PHP" value="4" />
-          <entry key="SQL" value="1" />
+          <entry key="PHP" value="8" />
+          <entry key="SQL" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -67,38 +69,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/config/doctypes.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/development/config/database.php">
+        <entry file="file://$PROJECT_DIR$/system/database/DB_driver.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+            <state relative-caret-position="16">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/database/DB.php">
+        <entry file="file://$PROJECT_DIR$/database_20200417.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2097" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/database/DB_driver.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1353">
-              <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+            <state relative-caret-position="420">
+              <caret line="194" column="36" selection-start-line="194" selection-start-column="36" selection-end-line="194" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database_20200417.sql">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -146,7 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>2014 BTS/SIGN Asthma Guidelines</find>
       <find>Today's</find>
       <find>This patient is a</find>
       <find>on &lt;b&gt;</find>
@@ -176,6 +169,7 @@
       <find>SMART</find>
       <find>getAllFromTypeID</find>
       <find>$CurrentILAA</find>
+      <find>UpdateCon</find>
     </findStrings>
     <replaceStrings>
       <replace>This person</replace>
@@ -225,6 +219,8 @@
         <option value="$PROJECT_DIR$/system/database/DB_driver.php" />
         <option value="$PROJECT_DIR$/applications/development/models/apidrugs_model.php" />
         <option value="$PROJECT_DIR$/flowalgorithms/algorithms.php" />
+        <option value="$PROJECT_DIR$/database_20200417.sql" />
+        <option value="$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php" />
       </list>
     </option>
   </component>
@@ -240,10 +236,10 @@
     </servers>
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost:80" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1920" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="47" />
     <option name="y" value="23" />
-    <option name="width" value="1920" />
+    <option name="width" value="1873" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -252,6 +248,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -259,16 +256,41 @@
               <item name="lung" type="b2602c69:ProjectViewProjectNode" />
               <item name="lung" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lung" type="462c0819:PsiDirectoryNode" />
+              <item name="applications" type="462c0819:PsiDirectoryNode" />
+              <item name="development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="lastconsultationreview" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Constants" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="review&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/models/review_model.php&#10;drug&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/includes/js/drug-editor.js&#10;last&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/views/lastconsultationreview&#10;helper&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/system/helpers/url_helper.php" />
+    <property name="SearchEverywhereHistoryKey" value="lastconsultationreview&#9;FILE&#9;file:///Volumes/WORK_MAC/Projects/PHP/LungHealth_CodeIgniter_Chris_php5.6/lung/applications/development/views/lastconsultationreview&#10;review&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/models/review_model.php&#10;drug&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/includes/js/drug-editor.js&#10;last&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/applications/development/views/lastconsultationreview&#10;helper&#9;FILE&#9;file:///Applications/MAMP/htdocs/lung/system/helpers/url_helper.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -314,12 +336,14 @@
       <workItem from="1585949532010" duration="942000" />
       <workItem from="1586019867640" duration="6096000" />
       <workItem from="1586254725724" duration="5143000" />
-      <workItem from="1587113514413" duration="4298000" />
+      <workItem from="1587113514413" duration="4993000" />
+      <workItem from="1587199266291" duration="23000" />
+      <workItem from="1587404662092" duration="810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128454000" />
+    <option name="totallyTimeSpent" value="129982000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -331,23 +355,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="23" width="1920" height="1057" extended-state="6" />
+    <frame x="47" y="23" width="1873" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49517685" visible="true" weight="0.19595315" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49517685" visible="true" weight="0.19934462" />
       <window_info id="Structure" order="1" sideWeight="0.50482315" side_tool="true" weight="0.1826411" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3046709" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.6326964" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.36068895" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33970276" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.33970276" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -472,18 +496,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/therapy-review.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-705" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/personal-features.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/views/reports/sections/diagnosis_030516.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -605,13 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14475">
-          <caret line="965" selection-start-line="965" selection-end-line="965" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/js/drug-list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3859" />
@@ -665,12 +670,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
+    <entry file="file://$PROJECT_DIR$/applications/development/config/doctypes.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1728">
-          <caret line="108" column="52" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
+        <state relative-caret-position="864">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/database/DB.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/development/models/questiongrouppage_model.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -703,30 +714,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/config/doctypes.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/development/config/database.php">
+    <entry file="file://$PROJECT_DIR$/system/database/DB_driver.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+        <state relative-caret-position="16">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/database/DB.php">
+    <entry file="file://$PROJECT_DIR$/applications/development/controllers/flowcontroller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2097" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/database/DB_driver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1353">
-          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+        <state relative-caret-position="565">
+          <caret line="108" column="52" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database_20200417.sql">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="194" column="36" selection-start-line="194" selection-start-column="36" selection-end-line="194" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/flowcontroller/screen.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="1073" selection-start-line="1073" selection-end-line="1073" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/core/Loader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="941">
+          <caret line="835" selection-start-line="835" selection-end-line="835" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/development/views/lastconsultationreview/report.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
