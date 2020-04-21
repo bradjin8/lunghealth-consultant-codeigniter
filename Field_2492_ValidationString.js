@@ -215,7 +215,7 @@ function agc_calc_DiagnosisAlgorithm()
         StepNumber = 'no current';
     }
     else if (medicationStepLevel.val() == 1) {
-        StepNumber = 'Intermittent therapy';
+        StepNumber = 'Intermittent reliever therapy';
     }
     else if (medicationStepLevel.val() == 2) {
         StepNumber = 'Regular preventer therapy';

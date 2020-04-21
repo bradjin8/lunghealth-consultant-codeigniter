@@ -1366,7 +1366,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         // 03/18/2020
         // for updated step algorithm
         // step 0: Step O
-        // step A , 1: As required reliever therapy
+        // step A , 1: Intermittent reliever therapy
         // step B , 2: Regular preventer therapy
         // step C , 3: Initial "add on therapy"
         // step D , 4: Additional Controller therapies  // Previously
@@ -1393,7 +1393,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         //      Fobumix (Budesonide and Formeterol Easyhaler)    80/4.5mcg strength
         //      Fobumix (Budesonide and Formeterol Easyhaler)   160/4.5mcg strength
         $OnMART = false;
-        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 400) {
+        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 500) {
             $OnMART = true;
         }
 
@@ -2494,12 +2494,12 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         //Step A; good control present for 6 months
         if ($msgCode == "A") {
-            $msgText = "<p>This person is on \"As required Reliever therapy\" using " . $CurrentStepADrug . ". They report good control that has been present for 6 months or more. It is acceptable for them to use the drug less but appropriate for them to retain some therapy since even well controlled asthma may vary over time. Guidelines suggest they should have both short acting reliever and a low dose ICS in reserve. Plan to continue annual asthma reviews until and unless they have been shown not to need any therapy over several years.</p>";
+            $msgText = "<p>This person is on \"Intermittent Reliever therapy\" using " . $CurrentStepADrug . ". They report good control that has been present for 6 months or more. It is acceptable for them to use the drug less but appropriate for them to retain some therapy since even well controlled asthma may vary over time. Guidelines suggest they should have both short acting reliever and a low dose ICS in reserve. Plan to continue annual asthma reviews until and unless they have been shown not to need any therapy over several years.</p>";
         }
 
         //Step A; good control but NOT present for 6 months
         if ($msgCode == "B") {
-            $msgText = "<p>This person is on \"As required Reliever therapy\" using " . $CurrentStepADrug . ". They report good control and the plan is for them to continue with current therapy unchanged. Keep under annual review.</p>";
+            $msgText = "<p>This person is on \"Intermittent Reliever therapy\" using " . $CurrentStepADrug . ". They report good control and the plan is for them to continue with current therapy unchanged. Keep under annual review.</p>";
         }
 
         //Step A; poor or partial control
@@ -2530,7 +2530,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         //Step B, partial control, In haled steroid 400mcg/day of BDP or equivalent to regain control or switching to a steroid/LABA combination inhaler
         if ($msgCode == "H1b") {
-            $msgText = "<p>This person is reporting partial control, on a very low dose of Regular inhaled steroid. As control was less than good last time, Consider Doubling the dose of inhaler steroid OR switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
+            $msgText = "<p>This person is reporting partial control, on a very low dose of Regular inhaled steroid. As control was less than good last time, Consider Doubling the dose of inhaled steroid OR switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
         }
 
         //Step B,
@@ -2540,7 +2540,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         //Step B; partial control and poor or partial last time; SABA+ICS
         if ($msgCode == "H1") {
-            $msgText = "<p>This person reports partial control on a low dose of inhaled steroid (Step B). As control was less than good last time, consider increasing the dose of inhaler steroid or changing to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
+            $msgText = "<p>This person reports partial control on a low dose of inhaled steroid (Step B). As control was less than good last time, consider increasing the dose of inhaled steroid or changing to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this has achieved control.</p>";
         }
 
         //Step B; partial control and poor or partial last time; NOT SABA+ICS
@@ -2565,7 +2565,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             } else {
                 $msgText = "";
             }
-            $msgText = $msgText . "<p>Because this is not the first time limited control has been noted, consider increasing the dose of inhaler steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether control has been regained.</p>";
+            $msgText = $msgText . "<p>Because this is not the first time limited control has been noted, consider increasing the dose of inhaled steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether control has been regained.</p>";
         }
 
         //Step B; poor control and poor last time; NOT SABA+ICS
@@ -2587,7 +2587,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 $secSentance = "As control was " . strtolower($ControlLastTime) . " last time";
             }
 
-            $msgText = "<p>This person reports poor control on a low dose of inhaled steroid " . $CurrentStepBDrug . " (Step B). " . $secSentance . ", consider increasing the dose of inhaler steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this step up of therapy should be maintained permanently.</p>";
+            $msgText = "<p>This person reports poor control on a low dose of inhaled steroid " . $CurrentStepBDrug . " (Step B). " . $secSentance . ", consider increasing the dose of inhaled steroid or switching to an ICS/LABA combination inhaler and plan to review earlier than one year to assess whether this step up of therapy should be maintained permanently.</p>";
         }
 
         //Step B; poor control and good or partial last time; NOT SABA+ICS
@@ -3126,11 +3126,11 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             case 0:
                 return 'no current';
             case 1:
-                return 'As Required Reliever Therapy';
+                return 'Intermittent Reliever Therapy';
             case 2:
                 return 'Regular Preventer Therapy';
             case 3:
-                return 'Initial Addon Therapy';
+                return 'Initial Add-on Therapy';
             case 4:
                 return 'Additional Controller Therapies';
             case 5:
@@ -3372,13 +3372,13 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 $StepTitle = "Step 0";
                 break;
             case "1":
-                $StepTitle = "As Required Reliever Therapy";
+                $StepTitle = "Intermittent Reliever Therapy";
                 break;
             case "2":
                 $StepTitle = "Regular Preventer Therapy";
                 break;
             case "3":
-                $StepTitle = "Initial Addon-Therapy";
+                $StepTitle = "Initial Add-on Therapy";
                 break;
             case "4":
                 $StepTitle = "Additional Controller Therapies";

@@ -36,7 +36,7 @@
             $StepTitle = "";
             switch ($CurrentMedication_CurrentMedicationLevel) {
                 case "1":
-                    $StepTitle = "As Required Reliever Therapy";
+                    $StepTitle = "Intermittent Reliever Therapy";
                     break;
                 case "2":
                     $StepTitle = "Regular Preventer Therapy";
