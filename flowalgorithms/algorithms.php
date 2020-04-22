@@ -1393,7 +1393,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         //      Fobumix (Budesonide and Formeterol Easyhaler)    80/4.5mcg strength
         //      Fobumix (Budesonide and Formeterol Easyhaler)   160/4.5mcg strength
         $OnMART = false;
-        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 500) {
+        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 400) {
             $OnMART = true;
         }
 
@@ -2766,16 +2766,16 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 $msgText = "<p>This person is only partially controlled on “Additional Controller therapy” but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to  maintain current level of therapy with an earlier review to  assess if more therapy may be needed. Plan to review in 3 months to check that control is re established</p>";
                 break;
             case "DPGF2":
-                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to step up the therapy  within“iniitial Add-on therapy”  range by switching to MART therapy. Plan to review in 3  months to check that control is re established</p>";
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to step up the therapy  within “Initial Add-on therapy”  range by switching to MART therapy. Plan to review in 3  months to check that control is re established</p>";
                 break;
             case "DPGF31":
-                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy” but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to  step up the therapy  within “Additional Controller therapy” range by adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place). Plan to review in 3 months to check that control is re established</p>";
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy” but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and you have chosen to  step up the therapy  within “Additional Controller therapy” range by adding an LTRA, or maintaining the ICS dose at 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place). Plan to review in 3 months to check that control is re established</p>";
                 break;
             case "DPGF32":
                 $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good and It would be beneficial to seek specialist advice.   Plan to maintain current therapy pending that opinion. Plan to review in 3 months to check progress. </p>";
                 break;
             case "DPGF33":
-                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good.   The decision is to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline.  Plan to review in 1-3 months to check Control is -established. </p>";
+                $msgText = "<p>This person is only partially controlled on “Additional Controller therapy”  but it has been good (or was unknown) at the previous visit.  Inhaler technique and medicine adherence are good.   The decision is to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or maintaining the ICS dose at 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline.  Plan to review in 1-3 months to check Control is -established. </p>";
                 break;
             case "DPPT1":
                 if ($UsedControl == "Good") {
@@ -2791,7 +2791,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 } else {
                     $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
                 }
-                $msgText .= "  You have  chosen to  increase therapy  within “Additional Controller therapy” range by adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place).and should review in 1-3 months</p>";
+                $msgText .= "  You have  chosen to  increase therapy  within “Additional Controller therapy” range by adding an LTRA, or maintaining the ICS dose at 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place).and should review in 1-3 months</p>";
                 break;
             case "DPPT3Y":
                 if ($UsedControl == "Good") {
@@ -2799,7 +2799,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 } else {
                     $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
                 }
-                $msgText .= " Options are to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline. Plan to review in 1-3 months to check Control is -established. </p>";
+                $msgText .= " Options are to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or maintaining the ICS dose at 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline. Plan to review in 1-3 months to check Control is -established. </p>";
                 break;
             case "DPPT3N":
                 if ($UsedControl == "Good") {
@@ -2815,7 +2815,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 } else {
                     $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
                 }
-                $msgText .= "Both inhaler technique and adherence to medicines are reported to be good so consider stepping up to therapy to regain control.   You have  chosen to  increase therapy  within “Additional Controller therapy” range by adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place).and should review in 1-3 months</p>";
+                $msgText .= "Both inhaler technique and adherence to medicines are reported to be good so consider stepping up to therapy to regain control.   You have  chosen to  increase therapy  within “Additional Controller therapy” range by adding an LTRA, or maintaining the ICS dose at 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place).and should review in 1-3 months</p>";
                 break;
             case "DPPF2N":
                 if ($UsedControl == "Good") {
@@ -2831,7 +2831,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                 } else {
                     $msgText = "<p>This person is poorly controlled on “Additional Controller therapy”. ";
                 }
-                $msgText .= "oth inhaler technique and adherence to medicines are reported to be good.  Options are to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or increasing ICS up to 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline.    Plan to review in 1-3 months to check Control is established. </p>";
+                $msgText .= "oth inhaler technique and adherence to medicines are reported to be good.  Options are to increase therapy either within “Additional Controller therapy” range b(y adding an LTRA, or maintaining the ICS dose at 800mcg BDP equivalent either as regular therapy or as part of MART  (if not already in place)), Or moving to “specialist therapies” eg one of High dose ICS, LAMA or Theophylline.    Plan to review in 1-3 months to check Control is established. </p>";
                 break;
             default:
                 break;
