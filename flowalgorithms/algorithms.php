@@ -1393,7 +1393,8 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         //      Fobumix (Budesonide and Formeterol Easyhaler)    80/4.5mcg strength
         //      Fobumix (Budesonide and Formeterol Easyhaler)   160/4.5mcg strength
         $OnMART = false;
-        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 400) {
+        //TODO: Here is the problem, ...
+        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 500) {
             $OnMART = true;
         }
 
