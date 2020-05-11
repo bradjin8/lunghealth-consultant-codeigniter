@@ -1450,7 +1450,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
                                     }
                                     else {
                                         // Any ICS Regular?, then Step B
-                                        if ($CurrentICS != NULL) {
+                                        if ($CurrentICS != NULL || $CurrentComb != NULL) {
                                             return $MedicationLevel = "2";
                                         }
                                         else {
