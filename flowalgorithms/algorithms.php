@@ -1363,6 +1363,15 @@ class FlowAlgorithmsLibrary extends FlowLibrary
 
         //var_dump($totalSteroidDose);die();
 
+        // added some strange feedback for Relvar Ellipta 184mcg/22mcg dry powder inhaler(actually 736, but should be HIGH DOSE)
+        if ($CurrentComb == 164 && is_numeric($BdpCombo)) {
+            $BdpCombo += 65;
+        }
+        // added some strange feedback for Relvar Ellipta 92mcg/22mcg dry powder inhaler(actually 368, but should be MEDIUM DOSE)
+        if ($CurrentComb == 165 && is_numeric($BdpCombo)) {
+            $BdpCombo += 33;
+        }
+
         // 03/18/2020
         // for updated step algorithm
         // step 0: Step O
@@ -1383,18 +1392,19 @@ class FlowAlgorithmsLibrary extends FlowLibrary
             $totalSteroidDose = $totalSteroidDose + $BdpCombo;
         }
 
-        // check onMART, 04/17/2020
+        // check onMART, 04/17/2020, 05/12/2020
         // MART means
-        //      Name                                                                                    BDP     Step    Input
-        //      DouResp Spiromax 160/4.5mcg (budesonide and formoterol fumarate)                        400     C       Combination therapy(ICS + LABA), $CurrentComb
-        //      Forstair (Beclomethasone and Formeterol Extrafine Metered Dose InhalerMDI) 100/6mcg     500
-        //      Symbicort (Budesonide and Formeterol Turbohaler) 100/6mcg strength                      400
-        //      Symbicort (Budesonide and Formeterol Turbohaler) 200/6mcg strength                      400
-        //      Fobumix (Budesonide and Formeterol Easyhaler)    80/4.5mcg strength
-        //      Fobumix (Budesonide and Formeterol Easyhaler)   160/4.5mcg strength
+        //      Name                                                                                    ID($CurrentComb)
+        //      DouResp Spiromax 160/4.5mcg (budesonide and formoterol fumarate)                        363
+        //      Fostair (Beclomethasone and Formeterol Extrafine Metered Dose InhalerMDI) 100/6mcg      162,163
+        //      Symbicort (Budesonide and Formeterol Turbohaler) 100/6mcg strength                      172
+        //      Symbicort (Budesonide and Formeterol Turbohaler) 200/6mcg strength                      173
+        //      Fobumix (Budesonide and Formeterol Easyhaler)    80/4.5mcg strength                     352
+        //      Fobumix (Budesonide and Formeterol Easyhaler)   160/4.5mcg strength                     353
         $OnMART = false;
+        $DrugIds_Combo = [363, 162, 163, 172, 173, 352, 353];
         //TODO: Here is the problem, ...
-        if ($CurrentComb != NULL && is_numeric($CurrentComb) && $CurrentComb <= 500) {
+        if ($CurrentComb != NULL && in_array($CurrentComb, $DrugIds_Combo)) {
             $OnMART = true;
         }
 
