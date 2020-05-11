@@ -1404,7 +1404,7 @@ class FlowAlgorithmsLibrary extends FlowLibrary
         $OnMART = false;
         $DrugIds_Combo = [363, 162, 163, 172, 173, 352, 353];
         //TODO: Here is the problem, ...
-        if ($CurrentComb != NULL && in_array($CurrentComb, $DrugIds_Combo)) {
+        if ($CurrentComb != NULL && in_array($CurrentComb, $DrugIds_Combo) && $totalSteroidDose <= 400) {
             $OnMART = true;
         }
 
