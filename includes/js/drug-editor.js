@@ -158,28 +158,28 @@ function agcBuildOptionsDropDownValueAndLabel(strDosage, strDose, objDrug) {
     strValue = '';
     strFrequency = 'Daily';
     if (typeof objDrug.frequency !== 'undefined') {
-        strFrequency = objDrug.frequency;
+        strFrequency = objDrug.frequency.toString().toLowerCase();
     }
 
     switch (strDosage.toLowerCase()) {
         case '1':
         case 'od':
-            strLabel = 'Once ' + strFrequency;
+            strLabel = '1 times ' + strFrequency;
             strValue = '1';
             break;
         case '2':
         case 'bd':
-            strLabel = 'Twice ' + strFrequency;
+            strLabel = '2 times ' + strFrequency;
             strValue = '2';
             break;
         case '3':
         case 'tds':
-            strLabel = 'Thrice ' + strFrequency;
+            strLabel = '3 times ' + strFrequency;
             strValue = '3';
             break;
         case '4':
         case 'qds':
-            strLabel = 'Four times ' + strFrequency;
+            strLabel = '4 times ' + strFrequency;
             strValue = '4';
             break;
         case 'prn':
@@ -213,8 +213,7 @@ function agcBuildOptionsDropDown(strTargetForInsert, strDrugType, strDrug, strNe
             $('<div/>', {id: strTargetForInsert + '_layout', class: 'col-md-4 layout-holder'})
                 .appendTo($('#' + strTargetForInsert))
         );
-    arrOptions = {};
-
+    var arrOptions = {};
 
     if (typeof objDrugs['Drug' + strDrug][strSelectedDrug] !== 'undefined') {
 
@@ -242,6 +241,9 @@ function agcBuildOptionsDropDown(strTargetForInsert, strDrugType, strDrug, strNe
             //;
 
             drugWarningFunctions = "agc_calc_NoSABA();";
+            if (typeof(agc_calc_NoSABA) !== 'function') {
+                drugWarningFunctions = "";
+            }
 
             if (strDatabaseFunction !== '') {
                 strOptionSelect += ' onChange="' + strDatabaseFunction + ';' + drugWarningFunctions + '"';
@@ -374,6 +376,8 @@ function agcBuildDrugDropDownOptions(srcObject, strMode) {
         strCurrentDrugName = objDrugList[jqO.attr('data-agccurrentdrug')].drugname;
     }
 
+
+    console.log('objDrugs', objDrugs);
 
     if (jqO.attr('data-agcbdpequiv') === 'true') {
 

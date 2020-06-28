@@ -553,16 +553,16 @@ function agcUsageName($strUsage)
 
         switch ($strDaily) {
             case '1':
-                $strLabel = 'Once Daily';
+                $strLabel = '1 times / day';
                 break;
             case '2':
-                $strLabel = 'Twice Daily';
+                $strLabel = '2 times / day';
                 break;
             case '3':
-                $strLabel = 'Thrice Daily';
+                $strLabel = '3 times / day';
                 break;
             case '4':
-                $strLabel = 'Four times Daily';
+                $strLabel = '4 times / day';
                 break;
             case 'prn':
                 $strLabel = 'As Required';
