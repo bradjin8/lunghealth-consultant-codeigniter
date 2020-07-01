@@ -156,9 +156,13 @@ function agcGetDoseText(objInput, strDose, objDrug) {
 function agcBuildOptionsDropDownValueAndLabel(strDosage, strDose, objDrug) {
     strLabel = '';
     strValue = '';
-    strFrequency = 'Daily';
+    strFrequency = 'daily';
     if (typeof objDrug.frequency !== 'undefined') {
         strFrequency = objDrug.frequency.toString().toLowerCase();
+    }
+
+    if (strFrequency === 'daily') {
+        strFrequency = '/ day'
     }
 
     switch (strDosage.toLowerCase()) {
@@ -234,6 +238,10 @@ function agcBuildOptionsDropDown(strTargetForInsert, strDrugType, strDrug, strNe
                 });
             }
 
+            /*$.each(objDrugs['Drug' + strDrug][strSelectedDrug]['puffpatternoptions'], function (index, option) {
+                console.log('option', index, option)
+            });*/
+
 
             //if (arrOptions.size > 1)
             //{
@@ -255,15 +263,13 @@ function agcBuildOptionsDropDown(strTargetForInsert, strDrugType, strDrug, strNe
 
             strOptionSelectOptions = '<option value="">Select One...</option>';
             $.each(arrOptions, function (strDaily, arrDoses) {
-
-
                 $.each(arrDoses, function (ii, strDose) {
                     objValueAndLabel = agcBuildOptionsDropDownValueAndLabel(strDaily, strDose, objDrugs['Drug' + strDrug][strSelectedDrug]);
+                    // console.log('valueandlabel', objValueAndLabel);
                     strOptionSelectOptions += '<option value="' + objValueAndLabel['value'] + '">' + objValueAndLabel['label'] + '</option>';
                 });
-
-
             });
+
             strOptionSelect += strOptionSelectOptions + '</select>';
 
             agc_console(strDrug);

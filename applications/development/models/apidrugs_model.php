@@ -134,7 +134,18 @@ class Apidrugs_model extends Api_model
                 $objDrug->high = $objNode->getElementsByTagName("High")->item(0)->nodeValue;
                 $objDrug->raitiobdpequivalence = $objNode->getElementsByTagName("RatioBDPEquivalence")->item(0)->nodeValue;
 
+                $puffPatternOptions = [];
+                foreach ($objNode->getElementsByTagName("PuffPatternOption") as $puffPatternOption) {
+                    $option = new stdClass();
 
+                    $option->pattern = $puffPatternOption->getElementsByTagName("Pattern")->item(0)->nodeValue;
+                    $option->dailydose = $puffPatternOption->getElementsByTagName("DailyDose")->item(0)->nodeValue;
+                    $option->strength = $puffPatternOption->getElementsByTagName("Strength")->item(0)->nodeValue;
+
+                    $puffPatternOptions[] = $option;
+                };
+
+                $objDrug->puffpatternoptions = $puffPatternOptions;
 
                 $arrDrugs[$objNode->getElementsByTagName("DrugTypeId")->item(0)->nodeValue][$objNode->getElementsByTagName("DrugId")->item(0)->nodeValue] = $objDrug;
             }
